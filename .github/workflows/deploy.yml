@@ -20,20 +20,6 @@ jobs:
     environment:
       name: github-pages
     steps:
-      - name: Check environment variables
-        run: |
-          echo "ASTRO_DB_REMOTE_URL is ${ASTRO_DB_REMOTE_URL:+SET}"
-          echo "ASTRO_DB_APP_TOKEN is ${ASTRO_DB_APP_TOKEN:+SET}"
-        env:
-          ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
-          ASTRO_DB_APP_TOKEN: ${{ vars.ASTRO_DB_APP_TOKEN }}
-      - name: Dump all env vars
-        run: printenv
-
-      - name: Print value directly from vars
-        run: |
-          echo "Value from vars: ${{ vars.ASTRO_DB_REMOTE_URL }}"
-
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
