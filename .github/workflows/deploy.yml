@@ -25,6 +25,13 @@ jobs:
         env:
           ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
           ASTRO_DB_APP_TOKEN: ${{ vars.ASTRO_DB_APP_TOKEN }}
+      - name: Check environment variables
+        run: |
+          echo "ASTRO_DB_REMOTE_URL is ${ASTRO_DB_REMOTE_URL:+SET}"
+          echo "ASTRO_DB_APP_TOKEN is ${ASTRO_DB_APP_TOKEN:+SET}"
+        env:
+          ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
+          ASTRO_DB_APP_TOKEN: ${{ vars.ASTRO_DB_APP_TOKEN }}
         # with:
         #   node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)
         #   package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
