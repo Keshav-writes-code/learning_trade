@@ -1,0 +1,24 @@
+---
+import Baselayout from "@/layouts/Baselayout.astro";
+import type { GetStaticPaths } from "astro";
+import { eq } from "astro:db";
+import { db, PYQs } from "astro:db";
+export const getStaticPaths =  (async () => {
+
+  const collegesT = await db.selectDistinct({short_name: PYQs.college_short_name}).from(PYQs).orderBy(PYQs.college_short_name)
+  return collegesT.map(college => ({params : {college: college.short_name} }))
+}) satisfies GetStaticPaths;
+
+const {college} = Astro.params
+
+const courses = await  db.selectDistinct({name: PYQs.course_name}).from(PYQs).where(eq( PYQs.college_short_name, college))
+console.log(courses)
+---
+<Baselayout>  
+<ul class="menu w-full menu-xl bg-base-200 rounded-box  ">
+{courses.map(course=>(
+    <li><a class="p-3 gap-4 text-4 capitalize " href={course.name.replaceAll(" ", "_") + "/"} > <div class="i-tabler:folder-filled size-10" ></div> {course.name}</a></li>
+))}
+</ul>
+</Baselayout>
+

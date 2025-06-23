@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths } from "astro";
+import Baselayout from "@/layouts/Baselayout.astro"
+import { db } from "astro:db";
+import { PYQs } from "astro:db";
+export const getStaticPaths = (async() => {
+  const courses = await db.selectDistinct({name: PYQs.course_name}).from(PYQs)
+    const collegesT = await db.selectDistinct({short_name: PYQs.college_short_name}).from(PYQs).orderBy(PYQs.college_short_name)
+
+  
+  const result = courses.flatMap(obj1 =>
+    collegesT.map(obj2 => ({ ...obj1, ...obj2 }))
+  );
+  return result.map(item=>({params: {course: item.name.replaceAll(" ", "_"), college: item.short_name}}));
+}) satisfies GetStaticPaths;
+
+const {course} = Astro.params
+console.log(course)
+
+---
+<Baselayout>
+  {course}
+
+</Baselayout>
+
