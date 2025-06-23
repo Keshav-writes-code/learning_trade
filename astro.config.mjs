@@ -13,6 +13,6 @@ export default defineConfig({
     db(),
   ],
   site: "https://Keshav-writes-code.github.io",
-  base: "Learning_Trade",
+  base: "learning_trade",
 });
 
