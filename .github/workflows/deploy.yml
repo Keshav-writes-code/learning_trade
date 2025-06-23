@@ -23,7 +23,7 @@ jobs:
           echo "ASTRO_DB_REMOTE_URL is ${ASTRO_DB_REMOTE_URL:+SET}"
           echo "ASTRO_DB_APP_TOKEN is ${ASTRO_DB_APP_TOKEN:+SET}"
         env:
-          ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
+          ASTRO_DB_REMOTE_URL: "libsql://learningtrade-keshav-writes-code.aws-ap-south-1.turso.io"
           ASTRO_DB_APP_TOKEN: ${{ vars.ASTRO_DB_APP_TOKEN }}
       - name: Dump all env vars
         run: printenv
