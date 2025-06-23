@@ -1,22 +1,11 @@
 ---
-import { ClientRouter, slide } from "astro:transitions";
-const sli = slide({duration: "0.5s"})
-
-const curve = "cubic-bezier(0,.93,.1,1)"
-
-sli.forwards.old[1].easing = curve
-sli.forwards.old[0].easing = curve
-sli.forwards.new[1].easing = curve
-sli.forwards.new[0].easing = curve
-
-sli.backwards.old[1].easing = curve
-sli.backwards.old[0].easing = curve
-sli.backwards.new[1].easing = curve
-sli.backwards.new[0].easing = curve
+import { ClientRouter,  } from "astro:transitions";
+import { slideTransition } from "./slideTransition";
+const curve = "cubic-bezier(0,1,0,1)"
 
 ---
 <!DOCTYPE html>
-<html lang="en" transition:animate={sli}>
+<html lang="en" transition:animate={slideTransition({easing:curve, duration: 700})}>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
