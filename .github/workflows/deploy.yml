@@ -18,17 +18,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
-        env:
-          ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
-          ASTRO_DB_APP_TOKEN: ${{ vars.ASTRO_DB_APP_TOKEN }}
       - name: Check environment variables
         run: |
           echo "ASTRO_DB_REMOTE_URL is ${ASTRO_DB_REMOTE_URL:+SET}"
           echo "ASTRO_DB_APP_TOKEN is ${ASTRO_DB_APP_TOKEN:+SET}"
+        env:
+          ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
+          ASTRO_DB_APP_TOKEN: ${{ vars.ASTRO_DB_APP_TOKEN }}
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+      - name: Install, build, and upload your site
+        uses: withastro/action@v3
         env:
           ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
           ASTRO_DB_APP_TOKEN: ${{ vars.ASTRO_DB_APP_TOKEN }}
