@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@ameinhardt/unocss-preset-daisy": "^1.1.8",
     "@astrojs/check": "0.9.4",
     "@astrojs/db": "^0.15.0",
     "@astrojs/svelte": "7.1.0",
@@ -30,3 +31,4 @@
     "unocss": "^66.1.0-beta.6"
   }
 }
+
