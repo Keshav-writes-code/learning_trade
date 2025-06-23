@@ -28,10 +28,9 @@ jobs:
       - name: Dump all env vars
         run: printenv
 
-      - name: Print ASTRO_DB_REMOTE_URL
-        run: echo "ASTRO_DB_REMOTE_URL=${ASTRO_DB_REMOTE_URL}"
-        env:
-          ASTRO_DB_REMOTE_URL: ${{ vars.ASTRO_DB_REMOTE_URL }}
+      - name: Print value directly from vars
+        run: echo "Value from vars: ${{ vars.ASTRO_DB_REMOTE_URL }}"
+
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
