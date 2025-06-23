@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev --host --remote",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build --remote",
     "preview": "astro preview --host",
     "astro": "astro"
   },
@@ -31,4 +31,3 @@
     "unocss": "^66.1.0-beta.6"
   }
 }
-
