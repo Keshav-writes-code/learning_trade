@@ -3,22 +3,17 @@ import type { GetStaticPaths } from "astro";
 import Baselayout from "@/layouts/Baselayout.astro"
 import { db } from "astro:db";
 import { PYQs } from "astro:db";
-export const getStaticPaths = (async() => {
-  const courses = await db.selectDistinct({name: PYQs.course_name}).from(PYQs)
-    const collegesT = await db.selectDistinct({short_name: PYQs.college_short_name}).from(PYQs).orderBy(PYQs.college_short_name)
 import { eq } from "astro:db";
 import type { ExplorerItem } from "@/types";
 import FilesLister from "@/components/files_lister.astro";
 import { and } from "astro:db";
 
+export const getStaticPaths = (async() => {
+  const res = await db.selectDistinct({couse_name: PYQs.course_name, college: PYQs.college_short_name}).from(PYQs)
   
-  const result = courses.flatMap(obj1 =>
-    collegesT.map(obj2 => ({ ...obj1, ...obj2 }))
-  );
-  return result.map(item=>({params: {course: item.name.replaceAll(" ", "_"), college: item.short_name}}));
+  return res.map(item=>({params: {college: item.college, course: item.couse_name.replaceAll(" ", "_") }}));
 }) satisfies GetStaticPaths;
 
-console.log(course)
 const { college, course} = Astro.params
 const res = await db.selectDistinct({number: PYQs.semester}).from(PYQs).where( and( eq(PYQs.course_name, course.replaceAll("_"," ")), eq( PYQs.college_short_name, college ) ))
 
