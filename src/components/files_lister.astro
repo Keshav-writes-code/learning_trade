@@ -22,8 +22,13 @@ const {items} = Astro.props
           <div class= "i-tabler:folder-filled size-10"></div>
         )}
 
-
         {item.label}
+
+        {item.type === "file" && (
+        <span class="p-2 bg-base-200 rounded-box " >
+          <div class="i-tabler:download size-6"></div>
+        </span>
+        )}
       </a>
     </li>
   ))}
