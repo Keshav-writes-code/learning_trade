@@ -7,6 +7,7 @@ import { eq } from "astro:db";
 import type { ExplorerItem } from "@/types";
 import FilesLister from "@/components/files_lister.astro";
 import { and } from "astro:db";
+import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
 
 export const getStaticPaths = (async() => {
   const res = await db.selectDistinct({couse_name: PYQs.course_name, college: PYQs.college_short_name}).from(PYQs)
@@ -18,8 +19,9 @@ const { college, course} = Astro.params
 const res = await db.selectDistinct({number: PYQs.semester}).from(PYQs).where( and( eq(PYQs.course_name, course.replaceAll("_"," ")), eq( PYQs.college_short_name, college ) ))
 
 const semesters: ExplorerItem[] = res.map(semester =>({label: semester.number, link: semester.number, type: "folder"}))
+
 ---
-<Baselayout>
+<ExplorerLayout label="Semesters">
   <FilesLister items={semesters} />
-</Baselayout>
+</ExplorerLayout>
 

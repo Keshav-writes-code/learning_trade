@@ -1,14 +1,14 @@
 ---
 import FilesLister from "@/components/files_lister.astro"
-import Baselayout from "@/layouts/Baselayout.astro"
 import { db } from "astro:db";
 import { PYQs } from "astro:db";
 import type { ExplorerItem } from "@/types";
+import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
 
 const res = await db.selectDistinct({college_name: PYQs.college_short_name}).from(PYQs)
 const colleges: ExplorerItem[] = res.map(item=> ( { label: item.college_name, link: item.college_name, type: "folder"  } ) )
 
 ---
-<Baselayout>
+<ExplorerLayout label="Colleges" >
   <FilesLister items={colleges} />
-</Baselayout>
+</ExplorerLayout>
