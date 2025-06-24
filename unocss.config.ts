@@ -34,7 +34,7 @@ export default defineConfig({
   transformers: [transformerVariantGroup()],
   separators: [":"],
   theme: {
-    ...(theme as Theme),
+    ...theme,
     // colors: colors as Record<string, string>
   },
 });
