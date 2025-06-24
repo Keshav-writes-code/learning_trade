@@ -20,8 +20,16 @@ const res = await db.selectDistinct({number: PYQs.semester}).from(PYQs).where( a
 
 const semesters: ExplorerItem[] = res.map(semester =>({label: semester.number, link: semester.number, type: "folder"}))
 
+const base_url = import.meta.env.BASE_URL
+const breadcrumb_items = [
+  {label: "Home", link: `${base_url}/`},
+  {label: "PYQ", link:`${base_url}/pyq/`},
+  {label: college.toUpperCase(), link: `${base_url}/pyq/${college}/`},
+  {label: course.toUpperCase().replaceAll("_"," "), link:`${base_url}/pyq/${college}/${course}`}
+]
+
 ---
-<ExplorerLayout label="Semesters">
+<ExplorerLayout label="Semesters" breadcrumb_items={breadcrumb_items}>
   <FilesLister items={semesters} />
 </ExplorerLayout>
 

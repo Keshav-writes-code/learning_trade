@@ -16,8 +16,14 @@ const {college} = Astro.params
 const res = await  db.selectDistinct({name: PYQs.course_name}).from(PYQs).where(eq( PYQs.college_short_name, college))
 const courses: ExplorerItem[] = res.map(course =>({label: course.name, link: course.name.replaceAll(" ", "_"), type: "folder"}))
 
+const base_url = import.meta.env.BASE_URL
+const breadcrumb_items = [
+  {label: "Home", link: `${base_url}/`},
+  {label: "PYQ", link:`${base_url}/pyq/`},
+  {label: college.toUpperCase(), link: `${base_url}/pyq/${college}/`}
+]
 ---
-<ExplorerLayout label="Courses" >  
-<FilesLister items={courses} />
+<ExplorerLayout label="Courses" breadcrumb_items={breadcrumb_items}  >  
+  <FilesLister items={courses} />
 </ExplorerLayout>
 
