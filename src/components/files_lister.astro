@@ -1,0 +1,30 @@
+---
+import type {ExplorerItem} from '@/types'
+interface Props {
+  items: ExplorerItem[]
+}
+const {items} = Astro.props
+---
+
+<ul class="menu w-full menu-xl  rounded-box">
+  {items.map(item => (
+    <li>
+      <a class="p-3 gap-4 text-4 capitalize" href={item.link + "/"}>
+        {item.type === "file" && (
+        <span class="p-2 bg-base-200 rounded-box " >
+          <div class={`${
+              item.file_type == "pdf" ? "i-tabler:file-type-pdf color-red" :
+              "i-tabler:question-mark"
+  } size-6`}></div>
+        </span>
+        )}
+        {item.type === "folder" && (
+          <div class= "i-tabler:folder-filled size-10"></div>
+        )}
+
+
+        {item.label}
+      </a>
+    </li>
+  ))}
+</ul>
