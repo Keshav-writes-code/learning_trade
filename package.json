@@ -7,7 +7,9 @@
     "start": "astro dev",
     "build": "astro check && astro build --remote",
     "preview": "astro preview --host",
-    "astro": "astro"
+    "astro": "astro",
+    "db:exec": "astro db execute ./db/seed.ts --remote ",
+    "db:push": "astro db push --remote"
   },
   "dependencies": {
     "@ameinhardt/unocss-preset-daisy": "^1.1.8",
