@@ -4,8 +4,7 @@ interface SlideOptions {
 }
 
 export function slideTransition(options: SlideOptions = {}) {
-  const { easing = "cubic-bezier(0.76, 0, 0.24, 1)", duration = "0.5s" } =
-    options;
+  const { easing = "cubic-bezier(0,1,0,1)", duration = 700 } = options;
 
   return {
     forwards: {
