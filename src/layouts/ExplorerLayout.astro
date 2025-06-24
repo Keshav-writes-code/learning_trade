@@ -1,4 +1,3 @@
-
 ---
 import BaseLayout from '@/layouts/Baselayout.astro'
 interface Props {
@@ -8,7 +7,8 @@ const { label} = Astro.props
 ---
 <BaseLayout>
   <header class="w-full bg-slate/10 h-14 flex items-center px-6  " transition:name="header"  > 
-    <div class="w-full flex" >
+    <div class="w-full flex items-center gap-5" >
+      <button onclick="history.back()" class="btn btn-circle btn-ghost"> <div class="i-tabler:arrow-left size-7 " ></div></button>
       <h1 class="text-lg">{ label }</h1>
     </div>
   </header>
