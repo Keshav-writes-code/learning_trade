@@ -1,6 +1,6 @@
 ---
 import { make_gApis_from_gDrvie_link } from "@/gdrive/gdrive_functions";
-import Baselayout from "@/layouts/Baselayout.astro";
+import PdfViewerLayout from "@/layouts/PdfViewerLayout.astro";
 import type { GetStaticPaths } from "astro";
 import { eq } from "astro:db";
 import { and } from "astro:db";
@@ -35,10 +35,10 @@ const google_drive_link = res.gdrive_link
 const google_apis_link = make_gApis_from_gDrvie_link(google_drive_link, GOOGLE_DRIVE_API_KEY)
 
 ---
-<Baselayout>
+<PdfViewerLayout prev_page_link="../" >
   <span class="loading loading-spinner loading-xl absolute top-50% left-50% translate-x--50% translate-y--50%" id="loader" ></span>
   <div id="pdf-container" transition:persist data-link={google_apis_link} ></div>
-</Baselayout>
+</PdfViewerLayout>
 <script is:inline type="module" data-astro-rerun >
   const container = document.getElementById('pdf-container');
   const loader = document.getElementById('loader')
