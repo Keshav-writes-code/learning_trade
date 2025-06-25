@@ -9,6 +9,7 @@ const PYQs = defineTable({
     course_name: column.text(),
     degree_name: column.text(),
     college_short_name: column.text(),
+    google_drive_link: column.text(),
   },
 });
 
