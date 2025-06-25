@@ -1,4 +1,5 @@
 ---
+import { make_gApis_from_gDrvie_link } from "@/gdrive/gdrive_functions";
 import Baselayout from "@/layouts/Baselayout.astro";
 import type { GetStaticPaths } from "astro";
 import { eq } from "astro:db";
@@ -31,12 +32,8 @@ const [res] = await db.selectDistinct({gdrive_link: PYQs.google_drive_link}).fro
   eq(PYQs.year_released, year)
 ))
 const google_drive_link = res.gdrive_link
-const google_apis_link = `https://www.googleapis.com/drive/v3/files/${extractDriveFileId(google_drive_link)}?alt=media&key=${GOOGLE_DRIVE_API_KEY}`
+const google_apis_link = make_gApis_from_gDrvie_link(google_drive_link, GOOGLE_DRIVE_API_KEY)
 
-function extractDriveFileId(url: string): string | null {
-  const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]{25,})/);
-  return match ? match[1] : null;
-}
 ---
 <Baselayout>
   <span class="loading loading-spinner loading-xl absolute top-50% left-50% translate-x--50% translate-y--50%" id="loader" ></span>
