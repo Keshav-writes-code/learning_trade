@@ -1,0 +1,75 @@
+---
+import Baselayout from "@/layouts/Baselayout.astro";
+import type { GetStaticPaths } from "astro";
+import { eq } from "astro:db";
+import { and } from "astro:db";
+import { db, PYQs } from "astro:db";
+import { GOOGLE_DRIVE_API_KEY } from "astro:env/server";
+export const getStaticPaths = (async () => {
+  const res = await db.selectDistinct({
+    college: PYQs.college_short_name,
+    course_name: PYQs.course_name,
+    semester: PYQs.semester,
+    subject: PYQs.subject_short_name,
+    year: PYQs.year_released,
+  }).from(PYQs)
+  return res.map(item=>({params : {
+      college: item.college,
+      course: item.course_name.replaceAll(" ","_"),
+      semester: item.semester,
+      subject: item.subject,
+      year: item.year
+    }}))
+}) satisfies GetStaticPaths
+
+const {college, course, semester, subject, year} = Astro.params;
+const [res] = await db.selectDistinct({gdrive_link: PYQs.google_drive_link}).from(PYQs).where(and(
+  eq(PYQs.college_short_name, college),
+  eq(PYQs.course_name, course.replaceAll("_", " ")),
+  eq(PYQs.semester, semester),
+  eq(PYQs.subject_short_name, subject ),
+  eq(PYQs.year_released, year)
+))
+const google_drive_link = res.gdrive_link
+const google_apis_link = `https://www.googleapis.com/drive/v3/files/${extractDriveFileId(google_drive_link)}?alt=media&key=${GOOGLE_DRIVE_API_KEY}`
+
+function extractDriveFileId(url: string): string | null {
+  const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]{25,})/);
+  return match ? match[1] : null;
+}
+---
+<Baselayout>
+  <span class="loading loading-spinner loading-xl absolute top-50% left-50% translate-x--50% translate-y--50%" id="loader" ></span>
+  <div id="pdf-container" transition:persist data-link={google_apis_link} ></div>
+</Baselayout>
+<script is:inline type="module" data-astro-rerun >
+  const container = document.getElementById('pdf-container');
+  const loader = document.getElementById('loader')
+  if(!container && !loader) throw Error("PDF Container element not found")
+  const url = container.dataset.link; // local/public path or blob URL
+
+  import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.mjs'
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.worker.mjs';
+  pdfjsLib.getDocument(url).promise.then(pdf => {
+    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+      pdf.getPage(pageNum).then(page => {
+        const scale = 1;
+        const viewport = page.getViewport({ scale });
+
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        if(!context) throw Error("CAnvas context not found")
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        container.appendChild(canvas);
+
+        page.render({
+          canvasContext: context,
+          viewport: viewport
+        });
+      });
+    }
+    loader.style.opacity = 0
+  });
+</script>

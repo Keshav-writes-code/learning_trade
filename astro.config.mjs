@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import UnoCSS from "unocss/astro";
 import svelte from "@astrojs/svelte";
 
@@ -12,7 +12,14 @@ export default defineConfig({
     svelte(),
     db(),
   ],
+  env: {
+    schema: {
+      GOOGLE_DRIVE_API_KEY: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+    },
+  },
   site: "https://Keshav-writes-code.github.io",
   base: "learning_trade",
 });
-
