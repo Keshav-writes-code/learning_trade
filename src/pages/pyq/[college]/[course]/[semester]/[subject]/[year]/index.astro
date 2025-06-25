@@ -37,12 +37,18 @@ const google_apis_link = make_gApis_from_gDrvie_link(google_drive_link, GOOGLE_D
 ---
 <PdfViewerLayout prev_page_link="../" >
   <span class="loading loading-spinner loading-xl absolute top-50% left-50% translate-x--50% translate-y--50%" id="loader" ></span>
+  <div id="error_modal" class="opacity-0 flex flex-col items-center transition-opacity absolute top-50% left-50% translate-x--50% translate-y--50% " >
+    <div class="i-tabler:alert-triangle color-red size-9" ></div>
+    <p id="error_text" class=" text-center color-base-content/50"> </p>
+  </div>
   <div id="pdf-container" transition:persist data-link={google_apis_link} ></div>
 </PdfViewerLayout>
 <script is:inline type="module" data-astro-rerun >
   const container = document.getElementById('pdf-container');
   const loader = document.getElementById('loader')
-  if(!container && !loader) throw Error("PDF Container element not found")
+  const error_modal = document.getElementById("error_modal")
+  const error_text = document.getElementById("error_text")
+  if(!container || !loader || !error_modal || !error_text ) throw Error("PDF Container element not found")
   const url = container.dataset.link; // local/public path or blob URL
 
   import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.mjs'
@@ -67,6 +73,10 @@ const google_apis_link = make_gApis_from_gDrvie_link(google_drive_link, GOOGLE_D
         });
       });
     }
+    loader.style.opacity = 0
+  }).catch(err=>{
+    error_text.textContent = err
+    error_modal.style.opacity = 1
     loader.style.opacity = 0
   });
 </script>
