@@ -5,21 +5,12 @@ interface Props {
   breadcrumb_items: {label: string|number, link: string}[]
 }
 const { label, breadcrumb_items } = Astro.props
-
-function removeLastSegment(url:string) {
-  // Ensure there is no trailing slash
-  const trimmed = url.replace(/\/+$/, '');
-  // Remove the last segment
-  const shortened = trimmed.substring(0, trimmed.lastIndexOf('/'));
-  // Add a trailing slash
-  return shortened + '/';
-}
 ---
 <BaseLayout>
   <header class="w-full flex flex-col gap-2 " transition:name="header"  > 
     <div class="w-full bg-slate/10 h-14 flex items-center px-6  " >
       <div class="w-full flex items-center gap-5" >
-        <a href={removeLastSegment(Astro.request.url)} class="btn btn-circle btn-ghost"> <div class="i-tabler:arrow-left size-7 " ></div></a>
+        <a href={breadcrumb_items[breadcrumb_items.length - 2].link} class="btn btn-circle btn-ghost"> <div class="i-tabler:arrow-left size-7 " ></div></a>
         <h1 class="text-lg">{ label }</h1>
       </div>
     </div>
