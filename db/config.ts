@@ -11,6 +11,20 @@ const PYQs = defineTable({
     college_short_name: column.text(),
     google_drive_link: column.text(),
   },
+  indexes: [
+    {
+      on: [
+        "degree_name",
+        "college_short_name",
+        "course_name",
+        "semester",
+        "subject_short_name",
+        "year_released",
+        "google_drive_link",
+      ],
+      unique: true,
+    },
+  ],
 });
 
 // https://astro.build/db/config
