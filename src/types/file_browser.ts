@@ -9,6 +9,7 @@ export type ExplorerItem =
       label: string | number;
       link: string | number;
       file_type: File_type;
+      download_link: string;
     };
 
 export type Item_type = "folder" | "file";
