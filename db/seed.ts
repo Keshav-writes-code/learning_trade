@@ -5,12 +5,14 @@ export default async function seed() {
   // TODO
   await db.insert(PYQs).values([
     {
-      subject_short_name: "AML",
+      subject_short_name: "aml",
       year_released: 2025,
       semester: 6,
-      course_name: "CSE with AI&ML",
-      degree_name: "B.Tech",
-      college_short_name: "ACEAR",
+      course_name: "cse with aiml",
+      degree_name: "b.tech",
+      college_short_name: "acear",
+      google_drive_link:
+        "https://drive.google.com/file/d/1mmLH7XxC1ZhocTSw3MZ88JQgSxOzQlZh/view",
     },
   ]);
 }
