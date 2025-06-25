@@ -1,9 +1,9 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import { slideTransition } from "./slideTransition";
+import {scaleFadeTransition} from './scaleFadeTransition.ts'
 ---
 <!DOCTYPE html>
-<html lang="en" transition:animate={slideTransition()}>
+<html lang="en" transition:animate={scaleFadeTransition()}>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,3 +14,27 @@ import { slideTransition } from "./slideTransition";
     <slot />
   </body>
 </html>
+
+<style>
+@keyframes scaleFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes scaleFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+</style>
