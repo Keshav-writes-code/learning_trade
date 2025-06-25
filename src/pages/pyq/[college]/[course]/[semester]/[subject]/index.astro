@@ -7,6 +7,7 @@ import { eq } from "astro:db";
 import type { ExplorerItem } from "@/types";
 import FilesLister from "@/components/files_lister.astro";
 import { and } from "astro:db";
+import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
 
 export const getStaticPaths = (async() => {
   const res = await db.selectDistinct({couse_name: PYQs.course_name, college: PYQs.college_short_name, semester: PYQs.semester ,  subject: PYQs.subject_short_name}).from(PYQs)
@@ -19,8 +20,18 @@ const {college, course, semester, subject } = Astro.params
 const res = await db.selectDistinct({year: PYQs.year_released}).from(PYQs).where(and(eq(PYQs.college_short_name, college), eq(PYQs.course_name, course.replaceAll("_", " ")), eq(PYQs.semester, semester), eq(PYQs.subject_short_name, subject ) ))
 
 const subjects: ExplorerItem[] = res.map(item => ( { label: `${subject} ${item.year} (${course}, ${college}) `, link: item.year, type: "file", file_type: "pdf" } ) ) 
+
+
+const base_url = import.meta.env.BASE_URL
+const breadcrumb_items = [
+  {label: "Home", link: `${base_url}/`},
+  {label: "PYQ", link:`${base_url}/pyq/`},
+  {label: college.toUpperCase(), link: `${base_url}/pyq/${college}/`},
+  {label: course.toUpperCase().replaceAll("_"," "), link:`${base_url}/pyq/${college}/${course}`},
+  {label: semester, link: `${base_url}/pyq/${college}/${course}/${semester}/` }
+]
 ---
-<Baselayout>
+<ExplorerLayout label={`${subject.toUpperCase()} PYQs`} breadcrumb_items={breadcrumb_items} >
   <FilesLister items={subjects} />
-</Baselayout>
+</ExplorerLayout>
 
