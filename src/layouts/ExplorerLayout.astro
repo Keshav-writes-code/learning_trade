@@ -17,7 +17,7 @@ const { label, breadcrumb_items } = Astro.props
     <div class=" pl-6 breadcrumbs text-sm">
       <ul>
         {breadcrumb_items.map(item=>( 
-          <li> <a href={item.link}> {item.label} </a> </li>
+          <li> <a href={item.link} class="capitalize"> {item.label} </a> </li>
         ))}
       </ul>
     </div>
