@@ -7,7 +7,6 @@ import type { ExplorerItem } from "@/types";
 import FilesLister from "@/components/files_lister.astro";
 import { and } from "astro:db";
 import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
-import { GOOGLE_DRIVE_API_KEY } from "astro:env/server";
 import { getDirectDownloadLink } from "@/lib/gdrive/gdrive_functions";
 import { toOrdinal } from "@/lib/text_manipulation/number_manipulation";
 
