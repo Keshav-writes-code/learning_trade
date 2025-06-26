@@ -9,6 +9,7 @@ import { and } from "astro:db";
 import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
 import { getDirectDownloadLink, make_gApis_from_gDrvie_link } from "@/gdrive/gdrive_functions";
 import { GOOGLE_DRIVE_API_KEY } from "astro:env/server";
+import { toOrdinal } from "@/lib/text_manipulation/number_manipulation";
 
 export const getStaticPaths = (async() => {
   const res = await db.selectDistinct({couse_name: PYQs.course_name, college: PYQs.college_short_name, semester: PYQs.semester ,  subject: PYQs.subject_short_name}).from(PYQs)
@@ -35,7 +36,7 @@ const breadcrumb_items = [
   {label: "PYQ", link:`${base_url}/pyq/`},
   {label: college.toUpperCase(), link: `${base_url}/pyq/${college}/`},
   {label: course.toUpperCase().replaceAll("_"," "), link:`${base_url}/pyq/${college}/${course}`},
-  {label: semester, link: `${base_url}/pyq/${college}/${course}/${semester}/` }
+  {label: toOrdinal( semester), link: `${base_url}/pyq/${college}/${course}/${semester}/` }
 ]
 ---
 <ExplorerLayout label={`${subject.toUpperCase()} PYQs`} breadcrumb_items={breadcrumb_items} >

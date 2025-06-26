@@ -7,6 +7,7 @@ import { and } from "astro:db";
 import { eq } from "astro:db";
 import type { ExplorerItem } from "@/types";
 import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
+import { toOrdinal } from "@/lib/text_manipulation/number_manipulation";
 
 export const getStaticPaths = (async () => {
   const res = await db.selectDistinct({college_name: PYQs.college_short_name ,couse_name: PYQs.course_name, semester: PYQs.semester}).from(PYQs)
@@ -32,7 +33,7 @@ const breadcrumb_items = [
   {label: "PYQ", link:`${base_url}/pyq/`},
   {label: college.toUpperCase(), link: `${base_url}/pyq/${college}/`},
   {label: course.toUpperCase().replaceAll("_"," "), link:`${base_url}/pyq/${college}/${course}`},
-  {label: semester, link: `${base_url}/pyq/${college}/${course}/${semester}/` }
+  {label: toOrdinal(semester), link: `${base_url}/pyq/${college}/${course}/${semester}/` }
 ]
 
 ---
