@@ -45,7 +45,8 @@ const google_apis_link = make_gApis_from_gDrvie_link(google_drive_link, GOOGLE_D
     <p id="error_text" class=" text-center color-base-content/50"> </p>
   </div>
 
-  <div id="pdf-container" transition:persist data-link={google_apis_link} class="max-w-full max-h-screen overflow-auto" ></div>
+  <div id="pdf-container" transition:persist data-link={google_apis_link} class="max-w-full max-h-screen overflow-auto" >
+  </div>
 
 </PdfViewerLayout>
 
@@ -70,6 +71,7 @@ const google_apis_link = make_gApis_from_gDrvie_link(google_drive_link, GOOGLE_D
         if(!context) throw Error("CAnvas context not found")
         canvas.height = viewport.height;
         canvas.width = viewport.width;
+        canvas.classList.add("w-full")
 
         container.appendChild(canvas);
 
