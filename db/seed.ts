@@ -424,7 +424,7 @@ export default async function seed() {
     {
       subject_short_name: "es",
       year_released: 2024,
-      semester: 4,
+      semester: 6,
       course_name: "cse with aiml",
       degree_name: "b.tech",
       college_short_name: "acear",
