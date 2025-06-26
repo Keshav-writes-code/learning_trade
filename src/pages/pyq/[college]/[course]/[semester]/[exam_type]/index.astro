@@ -52,7 +52,7 @@ const breadcrumb_items = [
   {label: college.toUpperCase(), link: `${base_url}/pyq/${college}/`},
   {label: course.toUpperCase().replaceAll("_"," "), link:`${base_url}/pyq/${college}/${course}`},
   {label: toOrdinal(semester), link: `${base_url}/pyq/${college}/${course}/${semester}/` },
-  {label: exam_type, link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/` }
+  {label: exam_type.replaceAll("_"," "), link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/` }
 ]
 
 ---
