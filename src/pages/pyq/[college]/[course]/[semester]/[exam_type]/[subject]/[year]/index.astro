@@ -6,37 +6,47 @@ import { eq } from "astro:db";
 import { and } from "astro:db";
 import { db, PYQs } from "astro:db";
 import { GOOGLE_DRIVE_API_KEY } from "astro:env/server";
+import { Exam_type } from "astro:db";
 export const getStaticPaths = (async () => {
   const res = await db.selectDistinct({
-    college: PYQs.college_short_name,
+    college_name: PYQs.college_short_name,
     course_name: PYQs.course_name,
     semester: PYQs.semester,
+    exam_type: Exam_type.name,
     subject: PYQs.subject_short_name,
     year: PYQs.year_released,
-  }).from(PYQs)
-  return res.map(item=>({params : {
-      college: item.college,
-      course: item.course_name.replaceAll(" ","_"),
-      semester: item.semester,
-      subject: item.subject,
-      year: item.year
-    }}))
+  }).from(PYQs).innerJoin(Exam_type, eq(PYQs.exam_type_id, Exam_type.id))
+  return res.map(item=>({params:{
+    college: item.college_name,
+    course: item.course_name.replaceAll(" ", "_"),
+    semester: item.semester,
+    exam_type: item.exam_type.replaceAll(" ","_"),
+    subject: item.subject,
+    year: item.year,
+  }}));
 }) satisfies GetStaticPaths
 
-const {college, course, semester, subject, year} = Astro.params;
-const [res] = await db.selectDistinct({gdrive_link: PYQs.google_drive_link}).from(PYQs).where(and(
-  eq(PYQs.college_short_name, college),
-  eq(PYQs.course_name, course.replaceAll("_", " ")),
-  eq(PYQs.semester, semester),
-  eq(PYQs.subject_short_name, subject ),
-  eq(PYQs.year_released, year)
-))
+const {college, course, semester, exam_type, subject, year} = Astro.params;
+
+const [{ id: exam_type_id }] = await db.select({id: Exam_type.id}).from(Exam_type).where(eq(Exam_type.name, exam_type.replaceAll("_", " ")))
+
+const [ res ] = await db.selectDistinct({
+  gdrive_link: PYQs.google_drive_link
+}).from(PYQs).where(and(
+    eq(PYQs.college_short_name, college),
+    eq(PYQs.course_name, course.replaceAll("_", " ")),
+    eq(PYQs.semester, semester),
+    eq(PYQs.exam_type_id, exam_type_id),
+    eq(PYQs.subject_short_name, subject),
+    eq(PYQs.year_released, year),
+  ))
+
 const google_drive_link = res.gdrive_link
 const google_apis_link = make_gApis_from_gDrvie_link(google_drive_link, GOOGLE_DRIVE_API_KEY)
 
 ---
 
-<PdfViewerLayout prev_page_link={`${import.meta.env.BASE_URL}/pyq/${college}/${course}/${semester}/${subject}`} >
+<PdfViewerLayout prev_page_link={`${import.meta.env.BASE_URL}/pyq/${college}/${course}/${semester}/${exam_type}/${subject}`} >
 
   <span class="loading loading-spinner loading-xl absolute top-50% left-50% translate-x--50% translate-y--50%" id="loader" ></span>
 

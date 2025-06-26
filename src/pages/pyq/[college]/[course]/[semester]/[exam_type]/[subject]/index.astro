@@ -1,0 +1,69 @@
+---
+import type { GetStaticPaths } from "astro";
+import { db } from "astro:db";
+import { PYQs } from "astro:db";
+import { eq } from "astro:db";
+import type { ExplorerItem } from "@/types";
+import FilesLister from "@/components/files_lister.astro";
+import { and } from "astro:db";
+import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
+import { getDirectDownloadLink } from "@/lib/gdrive/gdrive_functions";
+import { toOrdinal } from "@/lib/text_manipulation/number_manipulation";
+import { Exam_type } from "astro:db";
+
+export const getStaticPaths = (async() => {
+  const res = await db.selectDistinct({
+    college_name: PYQs.college_short_name,
+    course_name: PYQs.course_name,
+    semester: PYQs.semester,
+    exam_type: Exam_type.name,
+    subject: PYQs.subject_short_name,
+  }).from(PYQs).innerJoin(Exam_type, eq(PYQs.exam_type_id, Exam_type.id))
+  return res.map(item=>({params:{
+    college: item.college_name,
+    course: item.course_name.replaceAll(" ", "_"),
+    semester: item.semester,
+    exam_type: item.exam_type.replaceAll(" ","_"),
+    subject: item.subject,
+  }}));
+}) satisfies GetStaticPaths;
+
+const {college, course, semester, exam_type, subject } = Astro.params
+
+const [{ id: exam_type_id }] = await db.select({id: Exam_type.id}).from(Exam_type).where(eq(Exam_type.name, exam_type.replaceAll("_", " ")))
+
+const res = await db.selectDistinct({
+  year: PYQs.year_released,
+  gdrive_link: PYQs.google_drive_link
+}).from(PYQs).where(and(
+    eq(PYQs.college_short_name, college),
+    eq(PYQs.course_name, course.replaceAll("_", " ")),
+    eq(PYQs.semester, semester),
+    eq(PYQs.exam_type_id, exam_type_id),
+    eq(PYQs.subject_short_name, subject)
+  ))
+
+const base_url = import.meta.env.BASE_URL
+
+const subjects: ExplorerItem[] = res.map(item => ({
+  label: `${subject} ${item.year}`,
+  link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/${subject}/${item.year}`,
+  type: "file",
+  file_type: "pdf",
+  download_link: getDirectDownloadLink(item.gdrive_link)||""
+})) 
+
+const breadcrumb_items = [
+  {label: "Home", link: `${base_url}/`},
+  {label: "PYQ", link:`${base_url}/pyq/`},
+  {label: college.toUpperCase(), link: `${base_url}/pyq/${college}/`},
+  {label: course.toUpperCase().replaceAll("_"," "), link:`${base_url}/pyq/${college}/${course}`},
+  {label: toOrdinal(semester), link: `${base_url}/pyq/${college}/${course}/${semester}/` },
+  {label: exam_type, link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/` },
+  {label: subject.toUpperCase(), link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/${subject}` }
+]
+---
+<ExplorerLayout label={`${subject.toUpperCase()} PYQs`} breadcrumb_items={breadcrumb_items} >
+  <FilesLister items={subjects} />
+</ExplorerLayout>
+

@@ -8,6 +8,7 @@ import { eq } from "astro:db";
 import type { ExplorerItem } from "@/types";
 import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
 import { toOrdinal } from "@/lib/text_manipulation/number_manipulation";
+import { Exam_type } from "astro:db";
 
 export const getStaticPaths = (async () => {
   const res = await db.selectDistinct({college_name: PYQs.college_short_name ,couse_name: PYQs.course_name, semester: PYQs.semester}).from(PYQs)
@@ -18,13 +19,19 @@ export const getStaticPaths = (async () => {
 
 const {college, course, semester } = Astro.params
 
-const res = await db.selectDistinct({subject: PYQs.subject_short_name}).from(PYQs).where(and(eq(PYQs.college_short_name, college), eq(PYQs.course_name, course.replaceAll("_", " ")), eq(PYQs.semester, semester) ))
+const res = await db.selectDistinct({
+  exam_type: Exam_type.name
+}).from(PYQs).where(and(
+    eq(PYQs.college_short_name, college),
+    eq(PYQs.course_name, course.replaceAll("_", " ")),
+    eq(PYQs.semester, semester)
+  )).innerJoin(Exam_type,eq(PYQs.exam_type_id,Exam_type.id))
 
 const base_url = import.meta.env.BASE_URL
 
-const subjects: ExplorerItem[] = res.map(item => ({
-  label: item.subject,
-  link: `${base_url}/pyq/${college}/${course}/${semester}/${item.subject}`,
+const exam_types: ExplorerItem[] = res.map(item => ({
+  label: item.exam_type,
+  link: `${base_url}/pyq/${college}/${course}/${semester}/${item.exam_type.replaceAll(" ","_")}`,
   type: "folder"
 })) 
 
@@ -38,5 +45,5 @@ const breadcrumb_items = [
 
 ---
 <ExplorerLayout label="Subjects" breadcrumb_items={breadcrumb_items} >
-  <FilesLister items={subjects} />
+  <FilesLister items={exam_types} />
 </ExplorerLayout>

@@ -1,8 +1,16 @@
-import { db, PYQs } from "astro:db";
+import { db, Exam_type, PYQs } from "astro:db";
 
 // https://astro.build/db/seed
 export default async function seed() {
   // TODO
+  await db
+    .insert(Exam_type)
+    .values([
+      { name: "finals" },
+      { name: "sessional 1" },
+      { name: "sessional 2" },
+      { name: "sessional 3" },
+    ]);
   await db.insert(PYQs).values([
     {
       subject_short_name: "aml",
@@ -13,6 +21,7 @@ export default async function seed() {
       college_short_name: "acear",
       google_drive_link:
         "https://drive.google.com/file/d/1mmLH7XxC1ZhocTSw3MZ88JQgSxOzQlZh/view",
+      exam_type_id: 1,
     },
   ]);
 }
