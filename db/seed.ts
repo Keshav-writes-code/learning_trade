@@ -297,7 +297,7 @@ export default async function seed() {
       college_short_name: "acear",
       google_drive_link:
         "https://drive.google.com/file/d/15AEUAZAVDQr-EJmMi0l8nxILSdD9tpAE/view?usp=drive_link",
-      exam_type_id: 2,
+      exam_type_id: 3,
     },
     {
       subject_short_name: "is",
@@ -308,7 +308,7 @@ export default async function seed() {
       college_short_name: "acear",
       google_drive_link:
         "https://drive.google.com/file/d/1bBWKVBzADRXIV9Pe1XkgdBKrHB_oEA6p/view?usp=drive_link",
-      exam_type_id: 2,
+      exam_type_id: 3,
     },
     {
       subject_short_name: "iwt",
@@ -319,7 +319,7 @@ export default async function seed() {
       college_short_name: "acear",
       google_drive_link:
         "https://drive.google.com/file/d/1oa5UjKX-PO5UWgauWgU7qRNZ4d5iKGLp/view?usp=drive_link",
-      exam_type_id: 2,
+      exam_type_id: 3,
     },
     {
       subject_short_name: "maths",
@@ -330,7 +330,7 @@ export default async function seed() {
       college_short_name: "acear",
       google_drive_link:
         "https://drive.google.com/file/d/1lJ2gEERpMnnuXEFpqAoCw15h2KoQjRca/view?usp=drive_link",
-      exam_type_id: 2,
+      exam_type_id: 3,
     },
     {
       subject_short_name: "os",
@@ -341,7 +341,7 @@ export default async function seed() {
       college_short_name: "acear",
       google_drive_link:
         "https://drive.google.com/file/d/1_NSzHLAqOlusiNg8rCjQIymvacUcw8-e/view?usp=drive_link",
-      exam_type_id: 2,
+      exam_type_id: 3,
     },
     {
       subject_short_name: "se",
@@ -352,7 +352,7 @@ export default async function seed() {
       college_short_name: "acear",
       google_drive_link:
         "https://drive.google.com/file/d/1e_RWbqT--qXNpm-lJ1KLsy_yKCQ9cKYg/view?usp=drive_link",
-      exam_type_id: 2,
+      exam_type_id: 3,
     },
   ]);
 }
