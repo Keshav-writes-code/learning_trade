@@ -29,7 +29,8 @@ const res = await db.selectDistinct({
 
 const base_url = import.meta.env.BASE_URL
 
-const exam_types: ExplorerItem[] = res.map(item => ({
+const exams_sorted = res.sort((a,b)=>a.exam_type.localeCompare(b.exam_type))
+const exams_types: ExplorerItem[] = exams_sorted.map(item => ({
   label: item.exam_type,
   link: `${base_url}/pyq/${college}/${course}/${semester}/${item.exam_type.replaceAll(" ","_")}`,
   type: "folder"
@@ -45,5 +46,5 @@ const breadcrumb_items = [
 
 ---
 <ExplorerLayout label="Exam Type" breadcrumb_items={breadcrumb_items} >
-  <FilesLister items={exam_types} />
+  <FilesLister items={exams_types} />
 </ExplorerLayout>

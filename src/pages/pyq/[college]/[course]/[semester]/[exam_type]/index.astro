@@ -40,7 +40,8 @@ const res = await db.selectDistinct({
 
 const base_url = import.meta.env.BASE_URL
 
-const subjects: ExplorerItem[]= res.map(item=>({
+const subjects_sorted = res.sort((a,b)=>a.subject.localeCompare(b.subject))
+const subjects: ExplorerItem[]= subjects_sorted.map(item=>({
   label: item.subject,
   link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/${item.subject}`,
   type: "folder"
