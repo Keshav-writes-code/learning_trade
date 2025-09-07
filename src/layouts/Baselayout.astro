@@ -1,13 +1,14 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import {scaleFadeTransition} from './scaleFadeTransition.ts'
+import { base } from "astro:config/client";
 ---
 <!DOCTYPE html>
 <html lang="en" transition:animate={scaleFadeTransition()}>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href=`${base}/sitemap-index.xml` />
     <ClientRouter />
     <title>Learning Trade</title>
   </head>
