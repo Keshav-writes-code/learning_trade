@@ -14,7 +14,7 @@
   "dependencies": {
     "@ameinhardt/unocss-preset-daisy": "^1.1.8",
     "@astrojs/check": "0.9.4",
-    "@astrojs/db": "^0.15.0",
+    "@astrojs/db": "^0.17.1",
     "@astrojs/sitemap": "^3.5.1",
     "@astrojs/svelte": "7.1.0",
     "astro": "5.10.1",
