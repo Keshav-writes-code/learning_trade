@@ -4,14 +4,12 @@ import svelte from "@astrojs/svelte";
 
 import db from "@astrojs/db";
 
+import sitemap from "@astrojs/sitemap";
+
 export default defineConfig({
-  integrations: [
-    UnoCSS({
-      injectReset: true,
-    }),
-    svelte(),
-    db(),
-  ],
+  integrations: [UnoCSS({
+    injectReset: true,
+  }), svelte(), db(), sitemap()],
   env: {
     schema: {
       GOOGLE_DRIVE_API_KEY: envField.string({
