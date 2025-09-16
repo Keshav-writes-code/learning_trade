@@ -1,8 +1,19 @@
 ---
 import Baselayout from "@/layouts/Baselayout.astro"
+import type { PageMetadata } from "@/types"
+const page_metadata: PageMetadata = {
+  title: "Learning Trade | Select your need",
+  description: "Welcome to your academic resource hub. Find all your study materials in one place.",
+  open_graph: {
+    title: "Select your need",
+    type: "website" ,
+    image: "page_fallback_opengraph_image.jpg" ,
+  }
+} as const
+
 ---
 
-<Baselayout> 
+<Baselayout page_metadata={page_metadata} >  
   <div class="grid place-items-center h-screen" >
     <a class="btn btn-lg" href={`${import.meta.env.BASE_URL}/pyq/`}>PYQs</a> 
   </div>

@@ -7,6 +7,7 @@ import { and } from "astro:db";
 import { db, PYQs } from "astro:db";
 import { GOOGLE_DRIVE_API_KEY } from "astro:env/server";
 import { Exam_type } from "astro:db";
+import type { PageMetadata } from "@/types";
 export const getStaticPaths = (async () => {
   const res = await db.selectDistinct({
     college_name: PYQs.college_short_name,
@@ -44,9 +45,18 @@ const [ res ] = await db.selectDistinct({
 const google_drive_link = res.gdrive_link
 const google_apis_link = make_gApis_from_gDrvie_link(google_drive_link, GOOGLE_DRIVE_API_KEY)
 
+const page_metadata: PageMetadata = {
+  title: `${subject.toUpperCase()} – ${exam_type.replaceAll("_"," ")} PYQ (${year}) | PDF Preview`,
+  description: `Preview the ${exam_type} previous year question paper (${year}) for "${subject}" as a PDF—view online and download instantly. College: "${college}", Course: "${course}", Semester: "${semester}"`,
+  open_graph: {
+    title: `${subject.toUpperCase()} – ${exam_type.replaceAll("_"," ")} PYQ (${year}) | PDF Preview`,
+    type: "article",
+    image: "pyq_pages_opengraph_image.jpg",
+  },
+} as const;
 ---
 
-<PdfViewerLayout prev_page_link={`${import.meta.env.BASE_URL}/pyq/${college}/${course}/${semester}/${exam_type}/${subject}`} >
+<PdfViewerLayout page_metadata={page_metadata} prev_page_link={`${import.meta.env.BASE_URL}/pyq/${college}/${course}/${semester}/${exam_type}/${subject}`} >
 
   <span class="loading loading-spinner loading-xl absolute top-50% left-50% translate-x--50% translate-y--50%" id="loader" ></span>
 

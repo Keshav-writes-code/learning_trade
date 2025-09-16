@@ -63,8 +63,18 @@ const breadcrumb_items = [
   {label: exam_type, link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/` },
   {label: subject.toUpperCase(), link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/${subject}` }
 ]
+const page_metadata = {
+  title: `Available PDFs for "${subject}"`,
+  description: `Browse all available PDFs for "${subject}"—previous year question papers (PYQ) and notes. Preview online and download free. College: "${college}", Course: "${course}", Semester: "${semester}", Exam type: "${exam_type}, Subject: "${subject}`,
+  open_graph: {
+    title: `Available PDFs for "${subject}"`,
+    type: "website",
+    image: "pyq_pages_opengraph_image.jpg",
+  },
+} as const;
+
 ---
-<ExplorerLayout label={`${subject.toUpperCase()} PYQs`} breadcrumb_items={breadcrumb_items} >
+<ExplorerLayout page_metadata={page_metadata} label={`${subject.toUpperCase()} PYQs`} breadcrumb_items={breadcrumb_items} >
   <FilesLister items={pyqs} />
 </ExplorerLayout>
 

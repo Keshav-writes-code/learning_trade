@@ -28,8 +28,18 @@ const breadcrumb_items = [
   {label: "PYQ", link:`${base_url}/pyq`},
   {label: college.toUpperCase(), link: `${base_url}/pyq/${college}`}
 ]
+const page_metadata = {
+  title: "Select the Course",
+  description: `Select your course to find previous year question papers (PYQ) by semester and subject. Preview PDFs online and download instantly for free. ${college} ${courses.map(c=>`${c.label}, `)} `,
+  open_graph: {
+    title: "Select the Course",
+    type: "website" ,
+    image: "pyq_pages_opengraph_image.jpg" ,
+  }
+} as const
+
 ---
-<ExplorerLayout label="Courses" breadcrumb_items={breadcrumb_items}  >  
+<ExplorerLayout page_metadata={page_metadata} label="Courses" breadcrumb_items={breadcrumb_items}  >  
   <FilesLister items={courses} />
 </ExplorerLayout>
 

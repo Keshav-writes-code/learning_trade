@@ -55,8 +55,16 @@ const breadcrumb_items = [
   {label: toOrdinal(semester), link: `${base_url}/pyq/${college}/${course}/${semester}/` },
   {label: exam_type.replaceAll("_"," "), link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/` }
 ]
-
+const page_metadata = {
+  title: "Select the Subject",
+  description: `Select your subject to find previous year question papers (PYQ) for Semester "${semester}". Preview PDFs online and download instantly for free. College: "${college}", Course: "${course}", Semester : "${semester}", Exam type: "${exam_type}"`,
+  open_graph: {
+    title: "Select the Subject",
+    type: "website",
+    image: "pyq_pages_opengraph_image.jpg",
+  },
+} as const;
 ---
-<ExplorerLayout label="Subjects" breadcrumb_items={breadcrumb_items} >
+<ExplorerLayout page_metadata={page_metadata} label="Subjects" breadcrumb_items={breadcrumb_items} >
   <FilesLister items={subjects} />
 </ExplorerLayout>

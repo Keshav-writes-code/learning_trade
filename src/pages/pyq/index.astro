@@ -19,7 +19,17 @@ const breadcrumb_items = [
   {label: "Home", link: `${base_url}`},
   {label: "PYQ", link:`${base_url}/pyq`},
 ]
+const page_metadata = {
+  title: "Find the College",
+  description: "Select your college or university from our list to instantly access thousands of PYQ (Previous Year Question). Find  previous year exam papers ",
+  open_graph: {
+    title: "Find a College",
+    type: "website" ,
+    image: "pyq_pages_opengraph_image.jpg" ,
+  }
+} as const
+
 ---
-<ExplorerLayout label="Colleges" breadcrumb_items={breadcrumb_items} >
+<ExplorerLayout label="Colleges" breadcrumb_items={breadcrumb_items} page_metadata={page_metadata} >
   <FilesLister items={colleges} />
 </ExplorerLayout>

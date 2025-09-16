@@ -1,16 +1,34 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import {scaleFadeTransition} from './scaleFadeTransition.ts'
-import { base } from "astro:config/client";
+import { base, site } from "astro:config/client";
+import { SEO } from "astro-seo";
+import type { PageMetadata } from "@/types";
+type Props ={
+  page_metadata: PageMetadata
+}
+const { page_metadata } :  Props  = Astro.props
 ---
 <!DOCTYPE html>
 <html lang="en" transition:animate={scaleFadeTransition()}>
   <head>
-    <meta charset="UTF-8">
+    <SEO
+      title={page_metadata?.title || "Learning Trade"}
+      description={page_metadata?.description || ""}
+      openGraph={{
+        basic: {
+          title: page_metadata?.open_graph?.title || "Learning Trade",
+          type: page_metadata?.open_graph?.type || "A place to trade Study Resources",
+          image: `${site}${base}/assets/images/${page_metadata?.open_graph.image || "page_fallback_opengraph_image.jpg"}`,
+        }
+      }}
+      extend={{
+        link: [{ rel: "icon", href: `${base}/assets/images/logo_icon_only.png` }],
+      }}
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="sitemap" href=`${base}/sitemap-index.xml` />
     <ClientRouter />
-    <title>Learning Trade</title>
   </head>
   <body>
     <slot />
