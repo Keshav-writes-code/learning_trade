@@ -7,9 +7,14 @@ import db from "@astrojs/db";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  integrations: [UnoCSS({
-    injectReset: true,
-  }), svelte(), db(), sitemap()],
+  integrations: [
+    UnoCSS({
+      injectReset: true,
+    }),
+    svelte(),
+    db(),
+    sitemap(),
+  ],
   env: {
     schema: {
       GOOGLE_DRIVE_API_KEY: envField.string({
@@ -18,6 +23,7 @@ export default defineConfig({
       }),
     },
   },
-  site: "https://Keshav-writes-code.github.io",
+  site: "https://keshav.is-a.dev",
   base: "learning_trade",
 });
+
