@@ -71,38 +71,38 @@ const page_metadata: PageMetadata = {
 </PdfViewerLayout>
 
 <script is:inline type="module" data-astro-rerun >
-  const container = document.getElementById('pdf-container');
-  const loader = document.getElementById('loader')
-  const error_modal = document.getElementById("error_modal")
-  const error_text = document.getElementById("error_text")
-  if(!container || !loader || !error_modal || !error_text ) throw Error("PDF Container element not found")
-  const url = container.dataset.link; // local/public path or blob URL
+const container = document.getElementById('pdf-container');
+const loader = document.getElementById('loader')
+const error_modal = document.getElementById("error_modal")
+const error_text = document.getElementById("error_text")
+if(!container || !loader || !error_modal || !error_text ) throw Error("PDF Container element not found")
+const url = container.dataset.link; // local/public path or blob URL
 
-  import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.mjs'
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.worker.mjs';
-  pdfjsLib.getDocument(url).promise.then(pdf => {
-    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-      pdf.getPage(pageNum).then(page => {
-        const scale = window.devicePixelRatio || 1;
-        const viewport = page.getViewport({ scale });
+import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.mjs'
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.worker.mjs';
+pdfjsLib.getDocument(url).promise.then(pdf => {
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    pdf.getPage(pageNum).then(page => {
+      const scale = window.devicePixelRatio || 1;
+      const viewport = page.getViewport({ scale });
 
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        if(!context) throw Error("CAnvas context not found")
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        canvas.classList.add("w-full")
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if(!context) throw Error("CAnvas context not found")
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      canvas.classList.add("w-full")
 
-        container.appendChild(canvas);
+      container.appendChild(canvas);
 
-        page.render({
-          canvasContext: context,
-          viewport: viewport
-        });
+      page.render({
+        canvasContext: context,
+        viewport: viewport
       });
-    }
-    loader.style.opacity = 0
-  }).catch(err=>{
+    });
+  }
+  loader.style.opacity = 0
+}).catch(err=>{
     error_text.textContent = err
     error_modal.style.opacity = 1
     loader.style.opacity = 0
