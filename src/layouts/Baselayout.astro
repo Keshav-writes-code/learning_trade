@@ -16,9 +16,7 @@ const siteName = "Learning Trade";
   <head>
     <meta charset="UTF-8">
     <SEO
-      title={page_metadata?.title || siteName}
-      titleTemplate={`%s | ${siteName}`}
-      titleDefault={siteName}
+      title={page_metadata?.title ? `${page_metadata.title} | ${siteName}` : siteName}
       description={page_metadata?.description || "Your one-stop destination for Previous Year Question Papers (PYQ), study materials, and academic resources. Access free PDFs, preview online, and download instantly."}
       canonical={canonicalURL.href}
       openGraph={{

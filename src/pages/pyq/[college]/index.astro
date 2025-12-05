@@ -30,7 +30,7 @@ const breadcrumb_items = [
 ]
 const page_metadata = {
   title: `${college.toUpperCase()} - Select Your Course for PYQ Papers`,
-  description: `Access Previous Year Question Papers for ${college.toUpperCase()}. Select your course to browse PYQ by semester and subject. Available courses: ${courses_sorted.map(c => c.name).join(', ')}. Free PDF preview and download.`,
+  description: `Access Previous Year Question Papers for ${college.toUpperCase()}. Select your course to browse PYQ by semester and subject.${courses_sorted.length > 3 ? ` Available courses: ${courses_sorted.slice(0, 3).map(c => c.name).join(', ')} and more.` : courses_sorted.length > 0 ? ` Available courses: ${courses_sorted.map(c => c.name).join(', ')}.` : ''} Free PDF preview and download.`,
   open_graph: {
     title: `${college.toUpperCase()} PYQ - Course Selection`,
     type: "website" ,
