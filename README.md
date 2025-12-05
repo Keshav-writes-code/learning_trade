@@ -1,76 +1,161 @@
-# DUAS
+<div align="center">
 
-A Template for your next Web Project
+# 📚 Learning Trade
 
-- `D` - DaisyUi
-- `U` - Unocss
-- `A` - AstroJs
-- `S` - Svelte
+### Free Previous Year Question Papers & Study Materials
 
+[![Astro](https://img.shields.io/badge/Astro-5.x-BC52EE?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
+[![Svelte](https://img.shields.io/badge/Svelte-5.x-FF3E00?style=for-the-badge&logo=svelte&logoColor=white)](https://svelte.dev/)
+[![DaisyUI](https://img.shields.io/badge/DaisyUI-5.x-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)](https://daisyui.com/)
+[![UnoCSS](https://img.shields.io/badge/UnoCSS-Latest-333333?style=for-the-badge&logo=unocss&logoColor=white)](https://unocss.dev/)
 
-## Installation / Initialize / Setup
+**[🌐 Live Site](https://keshav.is-a.dev/learning_trade)** • **[📖 Docs](./docs/guides/)**
 
-Initalize a DUAS Project with
+</div>
 
-bun
-```bash
-bun create astro@latest -- --template Keshav-writes-code/DUAS-template
+---
+
+## 🎯 About
+
+**Learning Trade** is a free, open-source platform that provides students with easy access to Previous Year Question Papers (PYQs) and study materials. Built for students, by students — helping you ace your exams! 🎓
+
+Browse, preview, and download question papers organized by:
+- 🏫 **College**
+- 📚 **Course**
+- 📅 **Semester**
+- 📝 **Exam Type** (Finals, Sessionals)
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 📄 **PDF Preview** | Preview papers directly in browser before downloading |
+| 🔍 **Easy Navigation** | Intuitive folder-based browsing structure |
+| 📱 **Responsive Design** | Works seamlessly on desktop, tablet, and mobile |
+| ⚡ **Fast Performance** | Built with Astro for lightning-fast page loads |
+| 🆓 **100% Free** | All resources available at no cost |
+| 🔄 **Auto Updates** | Site rebuilds automatically 4 times daily |
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| [**Astro**](https://astro.build/) | Static site generator for content-driven websites |
+| [**Svelte**](https://svelte.dev/) | Reactive UI component framework |
+| [**UnoCSS**](https://unocss.dev/) | Utility-first CSS engine |
+| [**DaisyUI**](https://daisyui.com/) | Beautiful component library |
+| [**Astro DB**](https://docs.astro.build/en/guides/astro-db/) | Built-in database for content management |
+| [**Tabler Icons**](https://tabler.io/icons) | Icon set via UnoCSS preset |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Bun](https://bun.sh/) (recommended) or [Node.js](https://nodejs.org/) v18+
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Keshav-writes-code/learning_trade.git
+   cd learning_trade
+   ```
+
+2. **Install dependencies**
+   ```bash
+   bun install
+   ```
+
+3. **Start the development server**
+   ```bash
+   bun run dev
+   ```
+
+4. **Open in browser**
+   
+   Navigate to `http://localhost:4321/learning_trade`
+
+### Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `bun run dev` | Start development server with hot reload |
+| `bun run build` | Build the production site |
+| `bun run preview` | Preview the production build locally |
+| `bun run db:push` | Push database schema changes |
+| `bun run db:exec` | Execute database seed script |
+
+---
+
+## 📁 Project Structure
+
+```
+learning_trade/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # Reusable UI components
+│   ├── layouts/         # Page layouts
+│   ├── pages/           # Route pages
+│   │   └── pyq/         # PYQ browsing pages
+│   ├── lib/             # Utility functions
+│   └── types/           # TypeScript types
+├── db/
+│   ├── config.ts        # Database schema
+│   └── seed.ts          # Database seed data
+├── docs/
+│   └── guides/          # Documentation guides
+├── astro.config.mjs     # Astro configuration
+└── unocss.config.ts     # UnoCSS configuration
 ```
 
-## Stuff Included
-### Packages
-- Daisyui (latest)
-- Unocss (latest)
-  - Default Unocss Stuff
-  - Unocss Icones Preset (with Tabler Icones Set)
-  - tailwind (latest) (used only to serve DaisyUi Classes)
-- Astro (latest)
-- Svelte (latest)
-### Deplot to GH Pages
-- Change the value for `base` key in `astro.config.mjs` to basically Define a Sub Path that comes after `https://<your_github_username>.github.io/...` for gh pages hosting
-- example: `astro.config.mjs`
-```js
-import { defineConfig } from "astro/config";
-import UnoCSS from "unocss/astro";
-import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
+---
 
-export default defineConfig({
-  integrations: [UnoCSS({
-    injectReset: true,
-  }), svelte(), tailwind()],
-  site: "https://Keshav-writes-code.github.io",
-  base: "new_project",
-});
-```
-- Path on GH Pages = `https://keshavWebDev-personal.github.io/new_project`
-- when you do your First Push of a project created with this template (with the `base` and `site` params set) on Github, it will be automatically deployed to GH Pages with the above mentioned resulting URL  
+## 🤝 Contributing
 
+Contributions are welcome! Here's how you can help:
 
-## Installation & Setup in one Go
+### Adding New PYQs
 
-Copy Paste this in your Bash \ Zsh Terminal
+See the detailed guide: [How to Add New PYQ](./docs/guides/how_to_add_new_PYQ.md)
 
-**For** : `Linux : Debian / Ubuntu`
-```bash
-# Installs Git
-sudo apt-get install git &&
+### Code Contributions
 
-# Installs Node
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash &&
-nvm install 22 &&
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-# Installs Bun
-curl -fsSL https://bun.sh/install | bash &&
+---
 
-# Initialize a project with template in Current Directory
-bun create astro@latest -- --template Keshav-writes-code/DUAS-template#master
+## 📞 Support
 
-```
+If you find this project helpful, please consider:
 
+- ⭐ **Starring** this repository
+- 🐛 **Reporting bugs** via [Issues](https://github.com/Keshav-writes-code/learning_trade/issues)
+- 💡 **Suggesting features** or improvements
 
-## Screenshots
+---
 
-![localhost_4321_Project_Name](https://github.com/user-attachments/assets/1e772f1e-e4a3-4a6d-8f55-5b97283d01f7)
+## 📜 License
+
+This project is open source and available for educational purposes.
+
+---
+
+<div align="center">
+
+**Made with ❤️ for students everywhere**
+
+*Happy studying! 📖✨*
+
+</div>
 
 
