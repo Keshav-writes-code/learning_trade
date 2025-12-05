@@ -29,10 +29,10 @@ const breadcrumb_items = [
   {label: college.toUpperCase(), link: `${base_url}/pyq/${college}`}
 ]
 const page_metadata = {
-  title: "Select the Course",
-  description: `Select your course to find previous year question papers (PYQ) by semester and subject. Preview PDFs online and download instantly for free. ${college} ${courses.map(c=>`${c.label}, `)} `,
+  title: `${college.toUpperCase()} - Select Your Course for PYQ Papers`,
+  description: `Access Previous Year Question Papers for ${college.toUpperCase()}. Select your course to browse PYQ by semester and subject.${courses_sorted.length > 3 ? ` Available courses: ${courses_sorted.slice(0, 3).map(c => c.name).join(', ')} and more.` : courses_sorted.length > 0 ? ` Available courses: ${courses_sorted.map(c => c.name).join(', ')}.` : ''} Free PDF preview and download.`,
   open_graph: {
-    title: "Select the Course",
+    title: `${college.toUpperCase()} PYQ - Course Selection`,
     type: "website" ,
     image: "pyq_pages_opengraph_image.jpg" ,
   }

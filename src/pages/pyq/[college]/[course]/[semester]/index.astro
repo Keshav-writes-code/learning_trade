@@ -45,10 +45,10 @@ const breadcrumb_items = [
 ]
 
 const page_metadata = {
-  title: "Select the Exam Type",
-  description: `Select your exam type (Finals, Sessional 1, Sessional 2) to find previous year question papers (PYQ) by subject. Preview PDFs online and download instantly for free. College : "${college}", Course : "${course}", Semester : "${semester}"`,
+  title: `Semester ${semester} Exam Papers | ${course.replaceAll("_", " ")} - ${college.toUpperCase()}`,
+  description: `Access ${course.replaceAll("_", " ")} Semester ${semester} Previous Year Question Papers from ${college.toUpperCase()}. Choose exam type (Finals, Sessional, Mid-Term) to browse subject-wise PYQ PDFs with free download.`,
   open_graph: {
-    title: "Select the Exam Type",
+    title: `Sem ${semester} PYQ - ${course.replaceAll("_", " ")} | ${college.toUpperCase()}`,
     type: "website",
     image: "pyq_pages_opengraph_image.jpg",
   },
