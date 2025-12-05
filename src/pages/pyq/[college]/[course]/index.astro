@@ -35,10 +35,10 @@ const breadcrumb_items = [
 ]
 
 const page_metadata = {
-  title: "Select the Semester",
-  description: `Select your semester to find previous year question papers (PYQ) by subject. Preview PDFs online and download instantly for free. ${college}, ${course}`,
+  title: `${course.replaceAll("_", " ")} - Select Semester | ${college.toUpperCase()} PYQ`,
+  description: `Download ${course.replaceAll("_", " ")} Previous Year Question Papers from ${college.toUpperCase()}. Choose your semester to access subject-wise PYQ PDFs. Free preview and instant download available.`,
   open_graph: {
-    title: "Select the Semester",
+    title: `${course.replaceAll("_", " ")} Semester Selection - ${college.toUpperCase()} PYQ`,
     type: "website" ,
     image: "pyq_pages_opengraph_image.jpg" ,
   }
