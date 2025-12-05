@@ -12,7 +12,7 @@ import { Exam_type } from "astro:db";
 
 export const getStaticPaths = (async () => {
   const res = await db.selectDistinct({college_name: PYQs.college_short_name ,couse_name: PYQs.course_name, semester: PYQs.semester}).from(PYQs)
-  
+
   return res.map(item=> ({ params: { college: item.college_name, course: item.couse_name.replaceAll(" ", "_"), semester: item.semester } }) );
 }) satisfies GetStaticPaths;
 

@@ -31,8 +31,9 @@ const {college, course, semester, exam_type, subject, year} = Astro.params;
 
 const [{ id: exam_type_id }] = await db.select({id: Exam_type.id}).from(Exam_type).where(eq(Exam_type.name, exam_type.replaceAll("_", " ")))
 
-const [ res ] = await db.selectDistinct({
-  gdrive_link: PYQs.google_drive_link
+const [ {gdrive_link, subject_code} ] = await db.selectDistinct({
+  gdrive_link: PYQs.google_drive_link,
+  subject_code: PYQs.subject_code
 }).from(PYQs).where(and(
     eq(PYQs.college_short_name, college),
     eq(PYQs.course_name, course.replaceAll("_", " ")),
@@ -42,14 +43,13 @@ const [ res ] = await db.selectDistinct({
     eq(PYQs.year_released, year),
   ))
 
-const google_drive_link = res.gdrive_link
-const google_apis_link = make_gApis_from_gDrvie_link(google_drive_link, GOOGLE_DRIVE_API_KEY)
+const google_apis_link = make_gApis_from_gDrvie_link(gdrive_link, GOOGLE_DRIVE_API_KEY)
 
 const page_metadata: PageMetadata = {
-  title: `${subject.toUpperCase()} – ${exam_type.replaceAll("_"," ")} PYQ (${year}) | PDF Preview`,
-  description: `Preview the ${exam_type} previous year question paper (${year}) for "${subject}" as a PDF—view online and download instantly. College: "${college}", Course: "${course}", Semester: "${semester}"`,
+  title: `${subject_code || subject.toUpperCase()} ${year} – ${exam_type.replaceAll("_", " ")} PYQ | ${subject.replaceAll("_", " ")} PDF Download`,
+  description: `Download and view the ${year} ${exam_type.replaceAll("_", " ")} Previous Year Question Paper for ${subject.replaceAll("_", " ")} (${subject_code || "Subject Code"}) in PDF format. Access verified PYQs for ${course.replaceAll("_", " ")} – Semester ${semester}, ${college}.`,
   open_graph: {
-    title: `${subject.toUpperCase()} – ${exam_type.replaceAll("_"," ")} PYQ (${year}) | PDF Preview`,
+    title: `${subject_code || subject.toUpperCase()} – ${exam_type.replaceAll("_", " ")} Question Paper (${year}) | PDF Viewer`,
     type: "article",
     image: "pyq_pages_opengraph_image.jpg",
   },
@@ -71,38 +71,38 @@ const page_metadata: PageMetadata = {
 </PdfViewerLayout>
 
 <script is:inline type="module" data-astro-rerun >
-  const container = document.getElementById('pdf-container');
-  const loader = document.getElementById('loader')
-  const error_modal = document.getElementById("error_modal")
-  const error_text = document.getElementById("error_text")
-  if(!container || !loader || !error_modal || !error_text ) throw Error("PDF Container element not found")
-  const url = container.dataset.link; // local/public path or blob URL
+const container = document.getElementById('pdf-container');
+const loader = document.getElementById('loader')
+const error_modal = document.getElementById("error_modal")
+const error_text = document.getElementById("error_text")
+if(!container || !loader || !error_modal || !error_text ) throw Error("PDF Container element not found")
+const url = container.dataset.link; // local/public path or blob URL
 
-  import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.mjs'
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.worker.mjs';
-  pdfjsLib.getDocument(url).promise.then(pdf => {
-    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-      pdf.getPage(pageNum).then(page => {
-        const scale = window.devicePixelRatio || 1;
-        const viewport = page.getViewport({ scale });
+import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.mjs'
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.worker.mjs';
+pdfjsLib.getDocument(url).promise.then(pdf => {
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    pdf.getPage(pageNum).then(page => {
+      const scale = window.devicePixelRatio || 1;
+      const viewport = page.getViewport({ scale });
 
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        if(!context) throw Error("CAnvas context not found")
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        canvas.classList.add("w-full")
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if(!context) throw Error("CAnvas context not found")
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      canvas.classList.add("w-full")
 
-        container.appendChild(canvas);
+      container.appendChild(canvas);
 
-        page.render({
-          canvasContext: context,
-          viewport: viewport
-        });
+      page.render({
+        canvasContext: context,
+        viewport: viewport
       });
-    }
-    loader.style.opacity = 0
-  }).catch(err=>{
+    });
+  }
+  loader.style.opacity = 0
+}).catch(err=>{
     error_text.textContent = err
     error_modal.style.opacity = 1
     loader.style.opacity = 0

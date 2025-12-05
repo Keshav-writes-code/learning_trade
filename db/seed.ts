@@ -15,6 +15,7 @@ export default async function seed() {
     // 4th Sem
     {
       subject_short_name: "dbms",
+      subject_code: "",
       year_released: 2023,
       semester: 4,
       course_name: "cse with aiml",
@@ -26,6 +27,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "dbms",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -37,6 +39,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "dbms",
+      subject_code: "",
       year_released: 2022,
       semester: 4,
       course_name: "cse with aiml",
@@ -48,6 +51,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "env",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -59,6 +63,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "is",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -70,6 +75,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "is",
+      subject_code: "",
       year_released: 2022,
       semester: 4,
       course_name: "cse with aiml",
@@ -81,6 +87,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "is",
+      subject_code: "",
       year_released: 2023,
       semester: 4,
       course_name: "cse with aiml",
@@ -92,6 +99,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "iwt",
+      subject_code: "",
       year_released: 2022,
       semester: 4,
       course_name: "cse with aiml",
@@ -103,6 +111,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "iwt",
+      subject_code: "",
       year_released: 2023,
       semester: 4,
       course_name: "cse with aiml",
@@ -114,6 +123,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "iwt",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -125,6 +135,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "maths",
+      subject_code: "",
       year_released: 2022,
       semester: 4,
       course_name: "cse with aiml",
@@ -136,6 +147,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "maths",
+      subject_code: "",
       year_released: 2023,
       semester: 4,
       course_name: "cse with aiml",
@@ -147,6 +159,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "maths",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -158,6 +171,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "os",
+      subject_code: "",
       year_released: 2022,
       semester: 4,
       course_name: "cse with aiml",
@@ -169,6 +183,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "os",
+      subject_code: "",
       year_released: 2023,
       semester: 4,
       course_name: "cse with aiml",
@@ -180,6 +195,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "os",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -191,6 +207,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "se",
+      subject_code: "",
       year_released: 2022,
       semester: 4,
       course_name: "cse with aiml",
@@ -202,6 +219,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "se",
+      subject_code: "",
       year_released: 2023,
       semester: 4,
       course_name: "cse with aiml",
@@ -213,6 +231,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "se",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -224,6 +243,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "dbms",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -235,6 +255,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "is",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -246,6 +267,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "iwt",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -257,6 +279,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "maths",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -268,6 +291,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "os",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -279,6 +303,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "se",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -290,6 +315,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "dbms",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -301,6 +327,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "is",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -312,6 +339,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "iwt",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -323,6 +351,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "maths",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -334,6 +363,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "os",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -345,6 +375,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "se",
+      subject_code: "",
       year_released: 2024,
       semester: 4,
       course_name: "cse with aiml",
@@ -356,6 +387,7 @@ export default async function seed() {
     },
     // 6th Sem
     {
+      subject_code: "",
       subject_short_name: "aml",
       year_released: 2023,
       semester: 6,
@@ -367,6 +399,7 @@ export default async function seed() {
       exam_type_id: 1,
     },
     {
+      subject_code: "",
       subject_short_name: "aml",
       year_released: 2024,
       semester: 6,
@@ -378,6 +411,7 @@ export default async function seed() {
       exam_type_id: 1,
     },
     {
+      subject_code: "",
       subject_short_name: "aml",
       year_released: 2025,
       semester: 6,
@@ -390,6 +424,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "cv",
+      subject_code: "",
       year_released: 2023,
       semester: 6,
       course_name: "cse with aiml",
@@ -401,6 +436,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "cv",
+      subject_code: "",
       year_released: 2024,
       semester: 6,
       course_name: "cse with aiml",
@@ -412,6 +448,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "es",
+      subject_code: "",
       year_released: 2023,
       semester: 6,
       course_name: "cse with aiml",
@@ -423,6 +460,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "es",
+      subject_code: "",
       year_released: 2024,
       semester: 6,
       course_name: "cse with aiml",
@@ -434,6 +472,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "es",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -445,6 +484,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "hci",
+      subject_code: "",
       year_released: 2023,
       semester: 6,
       course_name: "cse with aiml",
@@ -456,6 +496,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "hci",
+      subject_code: "",
       year_released: 2024,
       semester: 6,
       course_name: "cse with aiml",
@@ -467,6 +508,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "hci",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -478,6 +520,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "ss",
+      subject_code: "",
       year_released: 2023,
       semester: 6,
       course_name: "cse with aiml",
@@ -489,6 +532,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "st",
+      subject_code: "",
       year_released: 2023,
       semester: 6,
       course_name: "cse with aiml",
@@ -500,6 +544,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "st",
+      subject_code: "",
       year_released: 2024,
       semester: 6,
       course_name: "cse with aiml",
@@ -511,6 +556,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "st",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -522,6 +568,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "aml",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -533,6 +580,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "cv",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -544,6 +592,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "es",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -555,6 +604,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "hci",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -566,6 +616,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "ss",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -577,6 +628,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "st",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -588,6 +640,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "aml",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -599,6 +652,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "es",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -610,6 +664,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "hci",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",
@@ -621,6 +676,7 @@ export default async function seed() {
     },
     {
       subject_short_name: "st",
+      subject_code: "",
       year_released: 2025,
       semester: 6,
       course_name: "cse with aiml",

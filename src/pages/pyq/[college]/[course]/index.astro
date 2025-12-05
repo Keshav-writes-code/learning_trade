@@ -11,7 +11,7 @@ import { toOrdinal } from "@/lib/text_manipulation/number_manipulation";
 
 export const getStaticPaths = (async() => {
   const res = await db.selectDistinct({couse_name: PYQs.course_name, college: PYQs.college_short_name}).from(PYQs)
-  
+
   return res.map(item=>({params: {college: item.college, course: item.couse_name.replaceAll(" ", "_") }}));
 }) satisfies GetStaticPaths;
 

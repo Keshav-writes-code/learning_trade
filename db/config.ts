@@ -4,6 +4,7 @@ const PYQs = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     subject_short_name: column.text(),
+    subject_code: column.text(),
     year_released: column.number(),
     semester: column.number(),
     course_name: column.text(),
