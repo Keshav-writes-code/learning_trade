@@ -56,10 +56,10 @@ const breadcrumb_items = [
   {label: exam_type.replaceAll("_"," "), link: `${base_url}/pyq/${college}/${course}/${semester}/${exam_type}/` }
 ]
 const page_metadata = {
-  title: "Select the Subject",
-  description: `Select your subject to find previous year question papers (PYQ) for Semester "${semester}". Preview PDFs online and download instantly for free. College: "${college}", Course: "${course}", Semester : "${semester}", Exam type: "${exam_type}"`,
+  title: `Sem ${semester} ${exam_type.replaceAll("_", " ")} | ${college.toUpperCase()}`,
+  description: `Download ${exam_type.replaceAll("_", " ")} Previous Year Question Papers for ${course.replaceAll("_", " ")} Semester ${semester} at ${college.toUpperCase()}. Browse all subjects and access free PYQ PDFs with instant preview and download.`,
   open_graph: {
-    title: "Select the Subject",
+    title: `${exam_type.replaceAll("_", " ")} Subject Selection | ${college.toUpperCase()} PYQ`,
     type: "website",
     image: "pyq_pages_opengraph_image.jpg",
   },
