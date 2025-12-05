@@ -7,14 +7,7 @@ import db from "@astrojs/db";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  integrations: [
-    UnoCSS({
-      injectReset: true,
-    }),
-    svelte(),
-    db(),
-    sitemap(),
-  ],
+  integrations: [UnoCSS(), svelte(), db(), sitemap()],
   env: {
     schema: {
       GOOGLE_DRIVE_API_KEY: envField.string({

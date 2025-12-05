@@ -12,7 +12,7 @@
     "db:push": "astro db push --remote"
   },
   "dependencies": {
-    "@ameinhardt/unocss-preset-daisy": "^1.1.8",
+    "@0x-jerry/unocss-preset-daisyui": "0.2.3",
     "@astrojs/check": "0.9.5",
     "@astrojs/db": "^0.15.0",
     "@astrojs/sitemap": "^3.5.1",
@@ -32,6 +32,6 @@
     "@unocss/preset-web-fonts": "^66.1.0-beta.6",
     "@unocss/reset": "^66.1.0-beta.6",
     "@unocss/transformer-variant-group": "^66.1.0-beta.6",
-    "unocss": "^66.1.0-beta.6"
+    "unocss": "^66.5.10"
   }
 }

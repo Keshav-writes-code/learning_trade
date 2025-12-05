@@ -4,6 +4,9 @@ import {scaleFadeTransition} from './scaleFadeTransition.ts'
 import { base, site } from "astro:config/client";
 import { SEO } from "astro-seo";
 import type { PageMetadata } from "@/types";
+import 'uno.css';
+import 'daisyui/theme/dark.css';
+
 type Props ={
   page_metadata: PageMetadata
 }
@@ -12,7 +15,7 @@ const canonicalURL = new URL(Astro.url.pathname, site);
 const siteName = "Learning Trade";
 ---
 <!DOCTYPE html>
-<html lang="en" transition:animate={scaleFadeTransition()}>
+<html lang="en" data-theme='dark' transition:animate={scaleFadeTransition()}>
   <head>
     <meta charset="UTF-8">
     <SEO
