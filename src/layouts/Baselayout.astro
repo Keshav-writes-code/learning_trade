@@ -1,66 +1,74 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import {scaleFadeTransition} from './scaleFadeTransition.ts'
-import { base, site } from "astro:config/client";
-import { SEO } from "astro-seo";
-import type { PageMetadata } from "@/types";
+import { ClientRouter } from 'astro:transitions';
+import { scaleFadeTransition } from './scaleFadeTransition.ts';
+import { base, site } from 'astro:config/client';
+import { SEO } from 'astro-seo';
+import type { PageMetadata } from '@/types';
 import 'uno.css';
 import 'daisyui/theme/dark.css';
 
-type Props ={
-  page_metadata: PageMetadata
-}
-const { page_metadata } :  Props  = Astro.props
+type Props = {
+  page_metadata: PageMetadata;
+};
+const { page_metadata }: Props = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, site);
-const siteName = "Learning Trade";
+const siteName = 'Learning Trade';
 ---
-<!DOCTYPE html>
-<html lang="en" data-theme='dark' transition:animate={scaleFadeTransition()}>
+
+<!doctype html>
+<html lang="en" data-theme="dark" transition:animate={scaleFadeTransition()}>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <SEO
-      title={page_metadata?.title ? `${page_metadata.title} | ${siteName}` : siteName}
-      description={page_metadata?.description || "Your one-stop destination for Previous Year Question Papers (PYQ), study materials, and academic resources. Access free PDFs, preview online, and download instantly."}
+      title={page_metadata?.title
+        ? `${page_metadata.title} | ${siteName}`
+        : siteName}
+      description={page_metadata?.description ||
+        'Your one-stop destination for Previous Year Question Papers (PYQ), study materials, and academic resources. Access free PDFs, preview online, and download instantly.'}
       canonical={canonicalURL.href}
       openGraph={{
         basic: {
           title: page_metadata?.open_graph?.title || siteName,
-          type: page_metadata?.open_graph?.type || "website",
-          image: `${site}${base}/assets/images/${page_metadata?.open_graph?.image || "page_fallback_opengraph_image.jpg"}`,
+          type: page_metadata?.open_graph?.type || 'website',
+          image: `${site}${base}/assets/images/${page_metadata?.open_graph?.image || 'page_fallback_opengraph_image.jpg'}`,
           url: canonicalURL.href,
         },
         optional: {
           siteName: siteName,
-          description: page_metadata?.description || "Your one-stop destination for Previous Year Question Papers (PYQ), study materials, and academic resources.",
-          locale: "en_US",
+          description:
+            page_metadata?.description ||
+            'Your one-stop destination for Previous Year Question Papers (PYQ), study materials, and academic resources.',
+          locale: 'en_US',
         },
         image: {
           alt: `${page_metadata?.open_graph?.title || siteName} - Academic Resources`,
         },
       }}
       twitter={{
-        card: "summary_large_image",
-        site: "@learningtrade",
+        card: 'summary_large_image',
+        site: '@learningtrade',
         title: page_metadata?.open_graph?.title || siteName,
-        description: page_metadata?.description || "Access free Previous Year Question Papers and study materials.",
-        image: `${site}${base}/assets/images/${page_metadata?.open_graph?.image || "page_fallback_opengraph_image.jpg"}`,
+        description:
+          page_metadata?.description ||
+          'Access free Previous Year Question Papers and study materials.',
+        image: `${site}${base}/assets/images/${page_metadata?.open_graph?.image || 'page_fallback_opengraph_image.jpg'}`,
         imageAlt: `${page_metadata?.open_graph?.title || siteName} - Academic Resources`,
       }}
       extend={{
         link: [
-          { rel: "icon", href: `${base}/assets/images/logo_icon_only.png` },
+          { rel: 'icon', href: `${base}/assets/images/logo_icon_only.png` },
         ],
         meta: [
-          { name: "author", content: "Learning Trade" },
-          { name: "robots", content: "index, follow" },
-          { name: "googlebot", content: "index, follow" },
-          { name: "theme-color", content: "#4f46e5" },
-          { name: "apple-mobile-web-app-title", content: siteName },
-          { name: "application-name", content: siteName },
+          { name: 'author', content: 'Learning Trade' },
+          { name: 'robots', content: 'index, follow' },
+          { name: 'googlebot', content: 'index, follow' },
+          { name: 'theme-color', content: '#4f46e5' },
+          { name: 'apple-mobile-web-app-title', content: siteName },
+          { name: 'application-name', content: siteName },
         ],
       }}
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="sitemap" href=`${base}/sitemap-index.xml` />
     <ClientRouter />
   </head>
@@ -70,29 +78,29 @@ const siteName = "Learning Trade";
 </html>
 
 <style>
-@keyframes scaleFadeOut {
-  0% {
-    opacity: 1;
-    transform: scale(1);
+  @keyframes scaleFadeOut {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
   }
-  100% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-}
 
-@keyframes scaleFadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
+  @keyframes scaleFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    30% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
-  30% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
 </style>

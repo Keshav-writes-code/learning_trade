@@ -1,21 +1,20 @@
 ---
-import Baselayout from "@/layouts/Baselayout.astro"
-import type { PageMetadata } from "@/types"
+import Baselayout from '@/layouts/Baselayout.astro';
+import type { PageMetadata } from '@/types';
 const page_metadata: PageMetadata = {
-  title: "Free PYQ Papers & Study Materials",
-  description: "Access thousands of free Previous Year Question Papers (PYQ), study notes, and academic resources. Preview PDFs online and download instantly. Your trusted source for college exam preparation materials.",
+  title: 'Free PYQ Papers & Study Materials',
+  description:
+    'Access thousands of free Previous Year Question Papers (PYQ), study notes, and academic resources. Preview PDFs online and download instantly. Your trusted source for college exam preparation materials.',
   open_graph: {
-    title: "Learning Trade - Free PYQ Papers & Study Materials",
-    type: "website" ,
-    image: "page_fallback_opengraph_image.jpg" ,
-  }
-} as const
-
+    title: 'Learning Trade - Free PYQ Papers & Study Materials',
+    type: 'website',
+    image: 'page_fallback_opengraph_image.jpg',
+  },
+} as const;
 ---
 
-<Baselayout page_metadata={page_metadata} >  
-  <div class="grid place-items-center h-screen" >
-    <a class="btn btn-lg" href={`${import.meta.env.BASE_URL}/pyq/`}>PYQs</a> 
+<Baselayout page_metadata={page_metadata}>
+  <div class="grid place-items-center h-screen">
+    <a class="btn btn-lg" href={`${import.meta.env.BASE_URL}/pyq/`}>PYQs</a>
   </div>
 </Baselayout>
-

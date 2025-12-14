@@ -1,35 +1,44 @@
 ---
-import FilesLister from "@/components/files_lister.astro"
-import { db } from "astro:db";
-import { PYQs } from "astro:db";
-import type { ExplorerItem } from "@/types";
-import ExplorerLayout from "@/layouts/ExplorerLayout.astro";
+import FilesLister from '@/components/files_lister.astro';
+import { db } from 'astro:db';
+import { PYQs } from 'astro:db';
+import type { ExplorerItem } from '@/types';
+import ExplorerLayout from '@/layouts/ExplorerLayout.astro';
 
-const res = await db.selectDistinct({college_name: PYQs.college_short_name}).from(PYQs)
+const res = await db
+  .selectDistinct({ college_name: PYQs.college_short_name })
+  .from(PYQs);
 
-const base_url = import.meta.env.BASE_URL
-const colleges_sorted = res.sort((a,b)=>a.college_name.localeCompare(b.college_name))
-const colleges: ExplorerItem[] = colleges_sorted.map(item=> ({
+const base_url = import.meta.env.BASE_URL;
+const colleges_sorted = res.sort((a, b) =>
+  a.college_name.localeCompare(b.college_name)
+);
+const colleges: ExplorerItem[] = colleges_sorted.map((item) => ({
   label: item.college_name,
   link: `${base_url}/pyq/${item.college_name}`,
-  type: "folder"
-}))
+  type: 'folder',
+}));
 
 const breadcrumb_items = [
-  {label: "Home", link: `${base_url}`},
-  {label: "PYQ", link:`${base_url}/pyq`},
-]
+  { label: 'Home', link: `${base_url}` },
+  { label: 'PYQ', link: `${base_url}/pyq` },
+];
 const page_metadata = {
-  title: "Previous Year Question Papers - Select Your College",
-  description: "Browse Previous Year Question Papers from top colleges. Select your institution to access free exam papers and study materials by course and semester.",
+  title: 'Previous Year Question Papers - Select Your College',
+  description:
+    'Browse Previous Year Question Papers from top colleges. Select your institution to access free exam papers and study materials by course and semester.',
   open_graph: {
-    title: "College Selection - Download Free PYQ Papers",
-    type: "website" ,
-    image: "pyq_pages_opengraph_image.jpg" ,
-  }
-} as const
-
+    title: 'College Selection - Download Free PYQ Papers',
+    type: 'website',
+    image: 'pyq_pages_opengraph_image.jpg',
+  },
+} as const;
 ---
-<ExplorerLayout label="Colleges" breadcrumb_items={breadcrumb_items} page_metadata={page_metadata} >
+
+<ExplorerLayout
+  label="Colleges"
+  breadcrumb_items={breadcrumb_items}
+  page_metadata={page_metadata}
+>
   <FilesLister items={colleges} />
 </ExplorerLayout>

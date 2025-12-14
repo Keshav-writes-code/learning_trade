@@ -1,17 +1,22 @@
 ---
-import BaseLayout from '@/layouts/Baselayout.astro'
+import BaseLayout from '@/layouts/Baselayout.astro';
 import type { PageMetadata } from '@/types';
 interface Props {
   prev_page_link: string;
-  page_metadata: PageMetadata
-
+  page_metadata: PageMetadata;
 }
-const { prev_page_link, page_metadata } = Astro.props
+const { prev_page_link, page_metadata } = Astro.props;
 ---
-<BaseLayout page_metadata={page_metadata} >
-  <a href={prev_page_link} transition:name="back_button" class="btn btn-circle absolute top-4 left-4 "> <div class="i-tabler:arrow-left size-7 " ></div></a>
+
+<BaseLayout page_metadata={page_metadata}>
+  <a
+    href={prev_page_link}
+    transition:name="back_button"
+    class="btn btn-circle absolute top-4 left-4"
+  >
+    <div class="i-tabler:arrow-left size-7"></div></a
+  >
   <main>
     <slot />
   </main>
 </BaseLayout>
-

@@ -1,110 +1,142 @@
 ---
-import { make_gApis_from_gDrvie_link } from "@/lib/gdrive/gdrive_functions";
-import PdfViewerLayout from "@/layouts/PdfViewerLayout.astro";
-import type { GetStaticPaths } from "astro";
-import { eq } from "astro:db";
-import { and } from "astro:db";
-import { db, PYQs } from "astro:db";
-import { GOOGLE_DRIVE_API_KEY } from "astro:env/server";
-import { Exam_type } from "astro:db";
-import type { PageMetadata } from "@/types";
+import { make_gApis_from_gDrvie_link } from '@/lib/gdrive/gdrive_functions';
+import PdfViewerLayout from '@/layouts/PdfViewerLayout.astro';
+import type { GetStaticPaths } from 'astro';
+import { eq } from 'astro:db';
+import { and } from 'astro:db';
+import { db, PYQs } from 'astro:db';
+import { GOOGLE_DRIVE_API_KEY } from 'astro:env/server';
+import { Exam_type } from 'astro:db';
+import type { PageMetadata } from '@/types';
 export const getStaticPaths = (async () => {
-  const res = await db.selectDistinct({
-    college_name: PYQs.college_short_name,
-    course_name: PYQs.course_name,
-    semester: PYQs.semester,
-    exam_type: Exam_type.name,
-    subject: PYQs.subject_short_name,
-    year: PYQs.year_released,
-  }).from(PYQs).innerJoin(Exam_type, eq(PYQs.exam_type_id, Exam_type.id))
-  return res.map(item=>({params:{
-    college: item.college_name,
-    course: item.course_name.replaceAll(" ", "_"),
-    semester: item.semester,
-    exam_type: item.exam_type.replaceAll(" ","_"),
-    subject: item.subject,
-    year: item.year,
-  }}));
-}) satisfies GetStaticPaths
+  const res = await db
+    .selectDistinct({
+      college_name: PYQs.college_short_name,
+      course_name: PYQs.course_name,
+      semester: PYQs.semester,
+      exam_type: Exam_type.name,
+      subject: PYQs.subject_short_name,
+      year: PYQs.year_released,
+    })
+    .from(PYQs)
+    .innerJoin(Exam_type, eq(PYQs.exam_type_id, Exam_type.id));
+  return res.map((item) => ({
+    params: {
+      college: item.college_name,
+      course: item.course_name.replaceAll(' ', '_'),
+      semester: item.semester,
+      exam_type: item.exam_type.replaceAll(' ', '_'),
+      subject: item.subject,
+      year: item.year,
+    },
+  }));
+}) satisfies GetStaticPaths;
 
-const {college, course, semester, exam_type, subject, year} = Astro.params;
+const { college, course, semester, exam_type, subject, year } = Astro.params;
 
-const [{ id: exam_type_id }] = await db.select({id: Exam_type.id}).from(Exam_type).where(eq(Exam_type.name, exam_type.replaceAll("_", " ")))
+const [{ id: exam_type_id }] = await db
+  .select({ id: Exam_type.id })
+  .from(Exam_type)
+  .where(eq(Exam_type.name, exam_type.replaceAll('_', ' ')));
 
-const [ {gdrive_link, subject_code} ] = await db.selectDistinct({
-  gdrive_link: PYQs.google_drive_link,
-  subject_code: PYQs.subject_code
-}).from(PYQs).where(and(
-    eq(PYQs.college_short_name, college),
-    eq(PYQs.course_name, course.replaceAll("_", " ")),
-    eq(PYQs.semester, semester),
-    eq(PYQs.exam_type_id, exam_type_id),
-    eq(PYQs.subject_short_name, subject),
-    eq(PYQs.year_released, year),
-  ))
+const [{ gdrive_link, subject_code }] = await db
+  .selectDistinct({
+    gdrive_link: PYQs.google_drive_link,
+    subject_code: PYQs.subject_code,
+  })
+  .from(PYQs)
+  .where(
+    and(
+      eq(PYQs.college_short_name, college),
+      eq(PYQs.course_name, course.replaceAll('_', ' ')),
+      eq(PYQs.semester, semester),
+      eq(PYQs.exam_type_id, exam_type_id),
+      eq(PYQs.subject_short_name, subject),
+      eq(PYQs.year_released, year)
+    )
+  );
 
-const google_apis_link = make_gApis_from_gDrvie_link(gdrive_link, GOOGLE_DRIVE_API_KEY)
+const google_apis_link = make_gApis_from_gDrvie_link(
+  gdrive_link,
+  GOOGLE_DRIVE_API_KEY
+);
 
 const page_metadata: PageMetadata = {
-  title: `${subject_code || subject.toUpperCase()} ${year} – ${exam_type.replaceAll("_", " ")} PYQ | ${subject.replaceAll("_", " ")} PDF Download`,
-  description: `Download and view the ${year} ${exam_type.replaceAll("_", " ")} Previous Year Question Paper for ${subject.replaceAll("_", " ")} (${subject_code || "Subject Code"}) in PDF format. Access verified PYQs for ${course.replaceAll("_", " ")} – Semester ${semester}, ${college}.`,
+  title: `${subject_code || subject.toUpperCase()} ${year} – ${exam_type.replaceAll('_', ' ')} PYQ | ${subject.replaceAll('_', ' ')} PDF Download`,
+  description: `Download and view the ${year} ${exam_type.replaceAll('_', ' ')} Previous Year Question Paper for ${subject.replaceAll('_', ' ')} (${subject_code || 'Subject Code'}) in PDF format. Access verified PYQs for ${course.replaceAll('_', ' ')} – Semester ${semester}, ${college}.`,
   open_graph: {
-    title: `${subject_code || subject.toUpperCase()} – ${exam_type.replaceAll("_", " ")} Question Paper (${year}) | PDF Viewer`,
-    type: "article",
-    image: "pyq_pages_opengraph_image.jpg",
+    title: `${subject_code || subject.toUpperCase()} – ${exam_type.replaceAll('_', ' ')} Question Paper (${year}) | PDF Viewer`,
+    type: 'article',
+    image: 'pyq_pages_opengraph_image.jpg',
   },
 } as const;
 ---
 
-<PdfViewerLayout page_metadata={page_metadata} prev_page_link={`${import.meta.env.BASE_URL}/pyq/${college}/${course}/${semester}/${exam_type}/${subject}`} >
+<PdfViewerLayout
+  page_metadata={page_metadata}
+  prev_page_link={`${import.meta.env.BASE_URL}/pyq/${college}/${course}/${semester}/${exam_type}/${subject}`}
+>
+  <span
+    class="loading loading-spinner loading-xl absolute top-50% left-50% translate-x--50% translate-y--50%"
+    id="loader"></span>
 
-  <span class="loading loading-spinner loading-xl absolute top-50% left-50% translate-x--50% translate-y--50%" id="loader" ></span>
-
-  <div id="error_modal" class="opacity-0 flex flex-col items-center transition-opacity absolute top-50% left-50% translate-x--50% translate-y--50% " >
-    <div class="i-tabler:alert-triangle color-red size-9" ></div>
-    <p id="error_text" class=" text-center color-base-content/50"> </p>
+  <div
+    id="error_modal"
+    class="opacity-0 flex flex-col items-center transition-opacity absolute top-50% left-50% translate-x--50% translate-y--50%"
+  >
+    <div class="i-tabler:alert-triangle color-red size-9"></div>
+    <p id="error_text" class="text-center color-base-content/50"></p>
   </div>
 
-  <div id="pdf-container" transition:persist data-link={google_apis_link} class="max-w-full max-h-screen overflow-auto" >
+  <div
+    id="pdf-container"
+    transition:persist
+    data-link={google_apis_link}
+    class="max-w-full max-h-screen overflow-auto"
+  >
   </div>
-
 </PdfViewerLayout>
 
-<script is:inline type="module" data-astro-rerun >
-const container = document.getElementById('pdf-container');
-const loader = document.getElementById('loader')
-const error_modal = document.getElementById("error_modal")
-const error_text = document.getElementById("error_text")
-if(!container || !loader || !error_modal || !error_text ) throw Error("PDF Container element not found")
-const url = container.dataset.link; // local/public path or blob URL
+<script is:inline type="module" data-astro-rerun>
+  const container = document.getElementById('pdf-container');
+  const loader = document.getElementById('loader');
+  const error_modal = document.getElementById('error_modal');
+  const error_text = document.getElementById('error_text');
+  if (!container || !loader || !error_modal || !error_text)
+    throw Error('PDF Container element not found');
+  const url = container.dataset.link; // local/public path or blob URL
 
-import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.mjs'
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.worker.mjs';
-pdfjsLib.getDocument(url).promise.then(pdf => {
-  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-    pdf.getPage(pageNum).then(page => {
-      const scale = window.devicePixelRatio || 1;
-      const viewport = page.getViewport({ scale });
+  import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.mjs';
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://unpkg.com/pdfjs-dist@5.3.31/legacy/build/pdf.worker.mjs';
+  pdfjsLib
+    .getDocument(url)
+    .promise.then((pdf) => {
+      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        pdf.getPage(pageNum).then((page) => {
+          const scale = window.devicePixelRatio || 1;
+          const viewport = page.getViewport({ scale });
 
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      if(!context) throw Error("CAnvas context not found")
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-      canvas.classList.add("w-full")
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          if (!context) throw Error('CAnvas context not found');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          canvas.classList.add('w-full');
 
-      container.appendChild(canvas);
+          container.appendChild(canvas);
 
-      page.render({
-        canvasContext: context,
-        viewport: viewport
-      });
+          page.render({
+            canvasContext: context,
+            viewport: viewport,
+          });
+        });
+      }
+      loader.style.opacity = 0;
+    })
+    .catch((err) => {
+      error_text.textContent = err;
+      error_modal.style.opacity = 1;
+      loader.style.opacity = 0;
     });
-  }
-  loader.style.opacity = 0
-}).catch(err=>{
-    error_text.textContent = err
-    error_modal.style.opacity = 1
-    loader.style.opacity = 0
-  });
 </script>

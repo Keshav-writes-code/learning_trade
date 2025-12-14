@@ -1,4 +1,4 @@
-import { column, defineDb, defineTable } from "astro:db";
+import { column, defineDb, defineTable } from 'astro:db';
 
 const PYQs = defineTable({
   columns: {
@@ -18,14 +18,14 @@ const PYQs = defineTable({
   indexes: [
     {
       on: [
-        "degree_name",
-        "college_short_name",
-        "course_name",
-        "semester",
-        "subject_short_name",
-        "year_released",
-        "google_drive_link",
-        "exam_type_id",
+        'degree_name',
+        'college_short_name',
+        'course_name',
+        'semester',
+        'subject_short_name',
+        'year_released',
+        'google_drive_link',
+        'exam_type_id',
       ],
       unique: true,
     },

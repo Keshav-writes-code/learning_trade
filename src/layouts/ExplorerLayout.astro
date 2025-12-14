@@ -1,26 +1,41 @@
 ---
-import BaseLayout from '@/layouts/Baselayout.astro'
-import type { PageMetadata } from "@/types/"
+import BaseLayout from '@/layouts/Baselayout.astro';
+import type { PageMetadata } from '@/types/';
 interface Props {
-  label: string
-  breadcrumb_items: {label: string|number, link: string}[]
-  page_metadata: PageMetadata
+  label: string;
+  breadcrumb_items: { label: string | number; link: string }[];
+  page_metadata: PageMetadata;
 }
-const { label, breadcrumb_items, page_metadata } = Astro.props
+const { label, breadcrumb_items, page_metadata } = Astro.props;
 ---
+
 <BaseLayout page_metadata={page_metadata}>
-  <header class="w-full flex flex-col gap-2 " transition:name="header"  > 
-    <div class="w-full bg-slate/10 h-14 flex items-center px-4  " >
-      <div class="w-full flex items-center gap-3" >
-        <a href={breadcrumb_items[breadcrumb_items.length - 2].link} transition:name="back_button" class="btn btn-circle btn-ghost"> <div class="i-tabler:arrow-left size-7 " ></div></a>
-        <h1 class="text-lg">{ label }</h1>
+  <header class="w-full flex flex-col gap-2" transition:name="header">
+    <div class="w-full bg-slate/10 h-14 flex items-center px-4">
+      <div class="w-full flex items-center gap-3">
+        <a
+          href={breadcrumb_items[breadcrumb_items.length - 2].link}
+          transition:name="back_button"
+          class="btn btn-circle btn-ghost"
+        >
+          <div class="i-tabler:arrow-left size-7"></div></a
+        >
+        <h1 class="text-lg">{label}</h1>
       </div>
     </div>
-    <div class=" mx-6 breadcrumbs text-sm ">
+    <div class="mx-6 breadcrumbs text-sm">
       <ul>
-        {breadcrumb_items.map(item=>( 
-          <li> <a href={item.link} class="capitalize"> {item.label} </a> </li>
-        ))}
+        {
+          breadcrumb_items.map((item) => (
+            <li>
+              {' '}
+              <a href={item.link} class="capitalize">
+                {' '}
+                {item.label}{' '}
+              </a>{' '}
+            </li>
+          ))
+        }
       </ul>
     </div>
   </header>
@@ -28,4 +43,3 @@ const { label, breadcrumb_items, page_metadata } = Astro.props
     <slot />
   </main>
 </BaseLayout>
-

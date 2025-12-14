@@ -20,6 +20,7 @@
 **Learning Trade** is a free, open-source platform that provides students with easy access to Previous Year Question Papers (PYQs) and study materials. Built for students, by students — helping you ace your exams! 🎓
 
 Browse, preview, and download question papers organized by:
+
 - 🏫 **College**
 - 📚 **Course**
 - 📅 **Semester**
@@ -29,27 +30,27 @@ Browse, preview, and download question papers organized by:
 
 ## ✨ Features
 
-| Feature | Description |
-|---------|-------------|
-| 📄 **PDF Preview** | Preview papers directly in browser before downloading |
-| 🔍 **Easy Navigation** | Intuitive folder-based browsing structure |
-| 📱 **Responsive Design** | Works seamlessly on desktop, tablet, and mobile |
-| ⚡ **Fast Performance** | Built with Astro for lightning-fast page loads |
-| 🆓 **100% Free** | All resources available at no cost |
-| 🔄 **Auto Updates** | Site rebuilds automatically 4 times daily |
+| Feature                  | Description                                           |
+| ------------------------ | ----------------------------------------------------- |
+| 📄 **PDF Preview**       | Preview papers directly in browser before downloading |
+| 🔍 **Easy Navigation**   | Intuitive folder-based browsing structure             |
+| 📱 **Responsive Design** | Works seamlessly on desktop, tablet, and mobile       |
+| ⚡ **Fast Performance**  | Built with Astro for lightning-fast page loads        |
+| 🆓 **100% Free**         | All resources available at no cost                    |
+| 🔄 **Auto Updates**      | Site rebuilds automatically 4 times daily             |
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| [**Astro**](https://astro.build/) | Static site generator for content-driven websites |
-| [**Svelte**](https://svelte.dev/) | Reactive UI component framework |
-| [**UnoCSS**](https://unocss.dev/) | Utility-first CSS engine |
-| [**DaisyUI**](https://daisyui.com/) | Beautiful component library |
-| [**Astro DB**](https://docs.astro.build/en/guides/astro-db/) | Built-in database for content management |
-| [**Tabler Icons**](https://tabler.io/icons) | Icon set via UnoCSS preset |
+| Technology                                                   | Purpose                                           |
+| ------------------------------------------------------------ | ------------------------------------------------- |
+| [**Astro**](https://astro.build/)                            | Static site generator for content-driven websites |
+| [**Svelte**](https://svelte.dev/)                            | Reactive UI component framework                   |
+| [**UnoCSS**](https://unocss.dev/)                            | Utility-first CSS engine                          |
+| [**DaisyUI**](https://daisyui.com/)                          | Beautiful component library                       |
+| [**Astro DB**](https://docs.astro.build/en/guides/astro-db/) | Built-in database for content management          |
+| [**Tabler Icons**](https://tabler.io/icons)                  | Icon set via UnoCSS preset                        |
 
 ---
 
@@ -62,34 +63,37 @@ Browse, preview, and download question papers organized by:
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/Keshav-writes-code/learning_trade.git
    cd learning_trade
    ```
 
 2. **Install dependencies**
+
    ```bash
    bun install
    ```
 
 3. **Start the development server**
+
    ```bash
    bun run dev
    ```
 
 4. **Open in browser**
-   
+
    Navigate to `http://localhost:4321/learning_trade`
 
 ### Available Commands
 
-| Command | Description |
-|---------|-------------|
-| `bun run dev` | Start development server with hot reload |
-| `bun run build` | Build the production site |
-| `bun run preview` | Preview the production build locally |
-| `bun run db:push` | Push database schema changes |
-| `bun run db:exec` | Execute database seed script |
+| Command           | Description                              |
+| ----------------- | ---------------------------------------- |
+| `bun run dev`     | Start development server with hot reload |
+| `bun run build`   | Build the production site                |
+| `bun run preview` | Preview the production build locally     |
+| `bun run db:push` | Push database schema changes             |
+| `bun run db:exec` | Execute database seed script             |
 
 ---
 
@@ -154,8 +158,6 @@ This project is open source and available for educational purposes.
 
 **Made with ❤️ for students everywhere**
 
-*Happy studying! 📖✨*
+_Happy studying! 📖✨_
 
 </div>
-
-

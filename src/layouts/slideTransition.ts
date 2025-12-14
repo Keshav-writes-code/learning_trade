@@ -4,66 +4,66 @@ interface SlideOptions {
 }
 
 export function slideTransition(options: SlideOptions = {}) {
-  const { easing = "cubic-bezier(0,1,0,1)", duration = 700 } = options;
+  const { easing = 'cubic-bezier(0,1,0,1)', duration = 700 } = options;
 
   return {
     forwards: {
       old: [
         {
-          name: "astroFadeOut",
+          name: 'astroFadeOut',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
         {
-          name: "astroSlideToLeft",
+          name: 'astroSlideToLeft',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
       ],
       new: [
         {
-          name: "astroFadeIn",
+          name: 'astroFadeIn',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
         {
-          name: "astroSlideFromRight",
+          name: 'astroSlideFromRight',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
       ],
     },
     backwards: {
       old: [
         {
-          name: "astroFadeOut",
+          name: 'astroFadeOut',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
         {
-          name: "astroSlideToRight",
+          name: 'astroSlideToRight',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
       ],
       new: [
         {
-          name: "astroFadeIn",
+          name: 'astroFadeIn',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
         {
-          name: "astroSlideFromLeft",
+          name: 'astroSlideFromLeft',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
       ],
     },

@@ -3,10 +3,10 @@ export type PageMetadata = {
   description: string;
   open_graph: {
     title: string;
-    type: "website" | "article";
+    type: 'website' | 'article';
     image:
-      | "pyq_pages_opengraph_image.jpg"
-      | "pdf_viewer_pages_opengraph_image.jpg"
-      | "page_fallback_opengraph_image.jpg";
+      | 'pyq_pages_opengraph_image.jpg'
+      | 'pdf_viewer_pages_opengraph_image.jpg'
+      | 'page_fallback_opengraph_image.jpg';
   };
 };

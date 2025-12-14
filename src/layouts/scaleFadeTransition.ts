@@ -4,24 +4,24 @@ interface ScaleFadeOptions {
 }
 
 export function scaleFadeTransition(options: ScaleFadeOptions = {}) {
-  const { easing = "cubic-bezier(0,1,.1,1)", duration = 300 } = options;
+  const { easing = 'cubic-bezier(0,1,.1,1)', duration = 300 } = options;
 
   return {
     forwards: {
       old: [
         {
-          name: "scaleFadeOut",
+          name: 'scaleFadeOut',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
       ],
       new: [
         {
-          name: "scaleFadeIn",
+          name: 'scaleFadeIn',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
           delay: duration, // start after the old one finishes
         },
       ],
@@ -29,18 +29,18 @@ export function scaleFadeTransition(options: ScaleFadeOptions = {}) {
     backwards: {
       old: [
         {
-          name: "scaleFadeOut",
+          name: 'scaleFadeOut',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
         },
       ],
       new: [
         {
-          name: "scaleFadeIn",
+          name: 'scaleFadeIn',
           duration,
           easing,
-          fillMode: "both",
+          fillMode: 'both',
           delay: duration,
         },
       ],

@@ -1,38 +1,48 @@
 ---
-import type {ExplorerItem} from '@/types'
+import type { ExplorerItem } from '@/types';
 interface Props {
-  items: ExplorerItem[]
+  items: ExplorerItem[];
 }
-const {items} = Astro.props
+const { items } = Astro.props;
 ---
 
-<ul class="menu w-full menu-xl  rounded-box">
-  {items.map(item => (
-    <li class="join flex-row" >
-      <a class="flex flex-1 items-center p-3 w-full gap-4 text-4 capitalize join-item " href={item.link + "/"}>
-        {item.type === "file" && (
-          <span class="p-2 bg-base-200 rounded-box " >
-            <div class={`${
-                item.file_type == "pdf" ? "i-tabler:file-type-pdf color-red" :
-                "i-tabler:question-mark"
-                } size-6`}>
-            </div>
-          </span>
-        )}
+<ul class="menu w-full menu-xl rounded-box">
+  {
+    items.map((item) => (
+      <li class="join flex-row">
+        <a
+          class="flex flex-1 items-center p-3 w-full gap-4 text-4 capitalize join-item "
+          href={item.link + '/'}
+        >
+          {item.type === 'file' && (
+            <span class="p-2 bg-base-200 rounded-box ">
+              <div
+                class={`${
+                  item.file_type == 'pdf'
+                    ? 'i-tabler:file-type-pdf color-red'
+                    : 'i-tabler:question-mark'
+                } size-6`}
+              ></div>
+            </span>
+          )}
 
-        {item.type === "folder" && (
-          <div class= "i-tabler:folder-filled size-10"></div>
-        )}
+          {item.type === 'folder' && (
+            <div class="i-tabler:folder-filled size-10" />
+          )}
 
-        {item.label}
-      </a>
-
-      {item.type === "file" && (
-        <a href={item.download_link} download={`${item.label.toString().replaceAll(" ","_")}.${item.file_type}`} class="btn join-item h-auto" >
-          <div class="i-tabler:download size-6"></div>
+          {item.label}
         </a>
-      )}
-    </li>
-  ))}
-</ul>
 
+        {item.type === 'file' && (
+          <a
+            href={item.download_link}
+            download={`${item.label.toString().replaceAll(' ', '_')}.${item.file_type}`}
+            class="btn join-item h-auto"
+          >
+            <div class="i-tabler:download size-6" />
+          </a>
+        )}
+      </li>
+    ))
+  }
+</ul>
