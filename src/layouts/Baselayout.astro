@@ -1,74 +1,25 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import { scaleFadeTransition } from './scaleFadeTransition.ts';
-import { base, site } from 'astro:config/client';
-import { SEO } from 'astro-seo';
+import { base } from 'astro:config/client';
 import type { PageMetadata } from '@/types';
 import 'uno.css';
 import 'daisyui/theme/dark.css';
+import SeoHead from '@/components/seo_head.astro';
 
 type Props = {
   page_metadata: PageMetadata;
 };
 const { page_metadata }: Props = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, site);
-const siteName = 'Learning Trade';
 ---
 
 <!doctype html>
 <html lang="en" data-theme="dark" transition:animate={scaleFadeTransition()}>
   <head>
     <meta charset="UTF-8" />
-    <SEO
-      title={page_metadata?.title
-        ? `${page_metadata.title} | ${siteName}`
-        : siteName}
-      description={page_metadata?.description ||
-        'Your one-stop destination for Previous Year Question Papers (PYQ), study materials, and academic resources. Access free PDFs, preview online, and download instantly.'}
-      canonical={canonicalURL.href}
-      openGraph={{
-        basic: {
-          title: page_metadata?.open_graph?.title || siteName,
-          type: page_metadata?.open_graph?.type || 'website',
-          image: `${site}${base}/assets/images/${page_metadata?.open_graph?.image || 'page_fallback_opengraph_image.jpg'}`,
-          url: canonicalURL.href,
-        },
-        optional: {
-          siteName: siteName,
-          description:
-            page_metadata?.description ||
-            'Your one-stop destination for Previous Year Question Papers (PYQ), study materials, and academic resources.',
-          locale: 'en_US',
-        },
-        image: {
-          alt: `${page_metadata?.open_graph?.title || siteName} - Academic Resources`,
-        },
-      }}
-      twitter={{
-        card: 'summary_large_image',
-        site: '@learningtrade',
-        title: page_metadata?.open_graph?.title || siteName,
-        description:
-          page_metadata?.description ||
-          'Access free Previous Year Question Papers and study materials.',
-        image: `${site}${base}/assets/images/${page_metadata?.open_graph?.image || 'page_fallback_opengraph_image.jpg'}`,
-        imageAlt: `${page_metadata?.open_graph?.title || siteName} - Academic Resources`,
-      }}
-      extend={{
-        link: [
-          { rel: 'icon', href: `${base}/assets/images/logo_icon_only.png` },
-        ],
-        meta: [
-          { name: 'author', content: 'Learning Trade' },
-          { name: 'robots', content: 'index, follow' },
-          { name: 'googlebot', content: 'index, follow' },
-          { name: 'theme-color', content: '#4f46e5' },
-          { name: 'apple-mobile-web-app-title', content: siteName },
-          { name: 'application-name', content: siteName },
-        ],
-      }}
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SeoHead page_metadata={page_metadata} />
+
     <link rel="sitemap" href=`${base}/sitemap-index.xml` />
     <ClientRouter />
   </head>
