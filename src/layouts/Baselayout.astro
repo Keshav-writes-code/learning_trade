@@ -5,6 +5,7 @@ import { base } from 'astro:config/client';
 import type { PageMetadata } from '@/types';
 import 'uno.css';
 import 'daisyui/theme/dark.css';
+import GoogleTagManager from '@/components/google_tag_manager.astro';
 import SeoHead from '@/components/seo_head.astro';
 
 type Props = {
@@ -22,6 +23,7 @@ const { page_metadata }: Props = Astro.props;
 
     <link rel="sitemap" href=`${base}/sitemap-index.xml` />
     <ClientRouter />
+    <GoogleTagManager container_id="GTM-ND93XZ69" />
   </head>
   <body>
     <slot />

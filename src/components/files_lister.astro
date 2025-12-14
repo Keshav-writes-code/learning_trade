@@ -22,7 +22,7 @@ const { items } = Astro.props;
                     ? 'i-tabler:file-type-pdf color-red'
                     : 'i-tabler:question-mark'
                 } size-6`}
-              ></div>
+              />
             </span>
           )}
 
@@ -38,6 +38,7 @@ const { items } = Astro.props;
             href={item.download_link}
             download={`${item.label.toString().replaceAll(' ', '_')}.${item.file_type}`}
             class="btn join-item h-auto"
+            track-me
           >
             <div class="i-tabler:download size-6" />
           </a>
