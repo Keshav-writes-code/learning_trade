@@ -26,7 +26,7 @@ export const getStaticPaths = (async () => {
     params: {
       college: item.college_name,
       course: item.course_name.replaceAll(' ', '_'),
-      semester: item.semester,
+      semester: item.semester.toString(),
       exam_type: item.exam_type.replaceAll(' ', '_'),
       subject: item.subject,
     },
@@ -50,7 +50,7 @@ const res = await db
     and(
       eq(PYQs.college_short_name, college),
       eq(PYQs.course_name, course.replaceAll('_', ' ')),
-      eq(PYQs.semester, semester),
+      eq(PYQs.semester, Number(semester)),
       eq(PYQs.exam_type_id, exam_type_id),
       eq(PYQs.subject_short_name, subject)
     )
@@ -76,7 +76,7 @@ const breadcrumb_items = [
     link: `${base_url}/pyq/${college}/${course}`,
   },
   {
-    label: toOrdinal(semester),
+    label: toOrdinal(Number(semester)),
     link: `${base_url}/pyq/${college}/${course}/${semester}/`,
   },
   {

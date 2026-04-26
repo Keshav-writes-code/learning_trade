@@ -10,7 +10,7 @@ import ExplorerLayout from '@/layouts/ExplorerLayout.astro';
 import { toOrdinal } from '@/lib/text_manipulation/number_manipulation';
 import { Exam_type } from 'astro:db';
 
-export const getStaticPaths = (async () => {
+export const getStaticPaths = async () => {
   const res = await db
     .selectDistinct({
       college_name: PYQs.college_short_name,
@@ -23,10 +23,10 @@ export const getStaticPaths = (async () => {
     params: {
       college: item.college_name,
       course: item.couse_name.replaceAll(' ', '_'),
-      semester: item.semester,
+      semester: item.semester.toString(),
     },
   }));
-}) satisfies GetStaticPaths;
+};
 
 const { college, course, semester } = Astro.params;
 
@@ -39,7 +39,7 @@ const res = await db
     and(
       eq(PYQs.college_short_name, college),
       eq(PYQs.course_name, course.replaceAll('_', ' ')),
-      eq(PYQs.semester, semester)
+      eq(PYQs.semester, Number(semester))
     )
   )
   .innerJoin(Exam_type, eq(PYQs.exam_type_id, Exam_type.id));
@@ -62,7 +62,7 @@ const breadcrumb_items = [
     link: `${base_url}/pyq/${college}/${course}`,
   },
   {
-    label: toOrdinal(semester),
+    label: toOrdinal(Number(semester)),
     link: `${base_url}/pyq/${college}/${course}/${semester}/`,
   },
 ];
