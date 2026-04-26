@@ -1,6 +1,6 @@
 ---
-import BaseLayout from '@/layouts/Baselayout.astro';
 import type { PageMetadata } from '@/types/';
+import AppLayout from './AppLayout.astro';
 interface Props {
   label: string;
   breadcrumb_items: { label: string | number; link: string }[];
@@ -9,7 +9,7 @@ interface Props {
 const { label, breadcrumb_items, page_metadata } = Astro.props;
 ---
 
-<BaseLayout page_metadata={page_metadata}>
+<AppLayout page_metadata={page_metadata}>
   <header class="w-full flex flex-col gap-2" transition:name="header">
     <div class="w-full bg-slate/10 h-14 flex items-center px-4">
       <div class="w-full flex items-center gap-3">
@@ -42,4 +42,4 @@ const { label, breadcrumb_items, page_metadata } = Astro.props;
   <main>
     <slot />
   </main>
-</BaseLayout>
+</AppLayout>
