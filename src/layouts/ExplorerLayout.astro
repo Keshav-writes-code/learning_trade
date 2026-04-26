@@ -1,12 +1,14 @@
 ---
 import type { PageMetadata } from '@/types/';
 import AppLayout from './AppLayout.astro';
+import { generate_breadcrumb_links } from '@/lib/routing';
 interface Props {
   label: string;
-  breadcrumb_items: { label: string | number; link: string }[];
   page_metadata: PageMetadata;
 }
-const { label, breadcrumb_items, page_metadata } = Astro.props;
+const breadcrumb_items = generate_breadcrumb_links(Astro.url);
+
+const { label, page_metadata } = Astro.props;
 ---
 
 <AppLayout page_metadata={page_metadata}>

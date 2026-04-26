@@ -4,25 +4,21 @@ import { db } from 'astro:db';
 import { PYQs } from 'astro:db';
 import type { ExplorerItem } from '@/types';
 import ExplorerLayout from '@/layouts/ExplorerLayout.astro';
+import { pyq_base_path } from '@/lib/states/global';
 
 const res = await db
   .selectDistinct({ college_name: PYQs.college_short_name })
   .from(PYQs);
 
-const base_url = import.meta.env.BASE_URL;
 const colleges_sorted = res.sort((a, b) =>
   a.college_name.localeCompare(b.college_name)
 );
 const colleges: ExplorerItem[] = colleges_sorted.map((item) => ({
   label: item.college_name,
-  link: `${base_url}/pyq/${item.college_name}`,
+  link: `${pyq_base_path}/${item.college_name}`,
   type: 'folder',
 }));
 
-const breadcrumb_items = [
-  { label: 'Home', link: `${base_url}` },
-  { label: 'PYQ', link: `${base_url}/pyq` },
-];
 const page_metadata = {
   title: 'Previous Year Question Papers - Select Your College',
   description:
@@ -35,10 +31,6 @@ const page_metadata = {
 } as const;
 ---
 
-<ExplorerLayout
-  label="Colleges"
-  breadcrumb_items={breadcrumb_items}
-  page_metadata={page_metadata}
->
+<ExplorerLayout label="Colleges" page_metadata={page_metadata}>
   <FilesLister items={colleges} />
 </ExplorerLayout>

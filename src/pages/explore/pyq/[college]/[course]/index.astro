@@ -8,6 +8,7 @@ import FilesLister from '@/components/files_lister.astro';
 import { and } from 'astro:db';
 import ExplorerLayout from '@/layouts/ExplorerLayout.astro';
 import { toOrdinal } from '@/lib/text_manipulation/number_manipulation';
+import { pyq_base_path } from '@/lib/states/global';
 
 export const getStaticPaths = (async () => {
   const res = await db
@@ -36,24 +37,12 @@ const res = await db
     )
   );
 
-const base_url = import.meta.env.BASE_URL;
-
 const semesters_sorted = res.sort((a, b) => a.number - b.number);
 const semesters: ExplorerItem[] = semesters_sorted.map((semester) => ({
   label: toOrdinal(semester.number),
-  link: `${base_url}/pyq/${college}/${course}/${semester.number}`,
+  link: `${pyq_base_path}/${college}/${course}/${semester.number}`,
   type: 'folder',
 }));
-
-const breadcrumb_items = [
-  { label: 'Home', link: `${base_url}/` },
-  { label: 'PYQ', link: `${base_url}/pyq/` },
-  { label: college.toUpperCase(), link: `${base_url}/pyq/${college}/` },
-  {
-    label: course.toUpperCase().replaceAll('_', ' '),
-    link: `${base_url}/pyq/${college}/${course}`,
-  },
-];
 
 const page_metadata = {
   title: `${course.replaceAll('_', ' ')} - Select Semester | ${college.toUpperCase()} PYQ`,
@@ -66,10 +55,6 @@ const page_metadata = {
 } as const;
 ---
 
-<ExplorerLayout
-  page_metadata={page_metadata}
-  label="Semesters"
-  breadcrumb_items={breadcrumb_items}
->
+<ExplorerLayout page_metadata={page_metadata} label="Semesters">
   <FilesLister items={semesters} />
 </ExplorerLayout>
