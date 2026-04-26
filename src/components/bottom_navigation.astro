@@ -1,22 +1,23 @@
 ---
-const link = Astro.request.url;
-
 const nav_links: {
   label: string;
   href: string;
-  base_icon_class: string;
+  icon: string;
+  icon_sel:string;
 }[] = [
-  {
-    label: 'home',
-    href: '/home',
-    base_icon_class: 'i-tabler:home',
-  },
-  {
-    label: 'profile',
-    href: '/profile',
-    base_icon_class: 'i-tabler:user',
-  },
-];
+    {
+      label: 'home',
+      href: '/home',
+      icon: 'i-tabler:home',
+      icon_sel:"i-tabler:home-filled"
+    },
+    {
+      label: 'profile',
+      href: '/profile',
+      icon: 'i-tabler:user',
+      icon_sel:"i-tabler:user-filled"
+    },
+  ];
 
 import { base } from 'astro:config/client';
 ---
@@ -27,8 +28,8 @@ import { base } from 'astro:config/client';
       <a class={Astro.url.pathname.startsWith(`${base}${link.href}`) ? 'dock-active' : ''} href=`${base}${link.href}`>
 
         { Astro.url.pathname.startsWith(`${base}${link.href}`) ?
-          <div class=`${link.base_icon_class}-filled size-5` /> :
-          <div class=`${link.base_icon_class} size-5` />
+          <div class=`${link.icon_sel} size-5` /> :
+          <div class=`${link.icon} size-5` />
         }
         <span class="dock-label capitalize">{link.label}</span>
       </a>
