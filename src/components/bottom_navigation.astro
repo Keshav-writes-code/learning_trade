@@ -1,0 +1,37 @@
+---
+const link = Astro.request.url;
+
+const nav_links: {
+  label: string;
+  href: string;
+  base_icon_class: string;
+}[] = [
+  {
+    label: 'home',
+    href: '/home',
+    base_icon_class: 'i-tabler:home',
+  },
+  {
+    label: 'profile',
+    href: '/profile',
+    base_icon_class: 'i-tabler:user',
+  },
+];
+
+import { base } from 'astro:config/client';
+---
+
+<div class="dock" transition:name="bottom_navigation"  >
+  {
+    nav_links.map((link) => (
+      <a class={Astro.url.pathname.startsWith(`${base}${link.href}`) ? 'dock-active' : ''} href=`${base}${link.href}`>
+
+        { Astro.url.pathname.startsWith(`${base}${link.href}`) ?
+          <div class=`${link.base_icon_class}-filled size-5` /> :
+          <div class=`${link.base_icon_class} size-5` />
+        }
+        <span class="dock-label capitalize">{link.label}</span>
+      </a>
+    ))
+  }
+</div>

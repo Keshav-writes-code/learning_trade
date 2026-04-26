@@ -1,0 +1,16 @@
+---
+import BaseLayout from '@/layouts/Baselayout.astro';
+import BottomNavigation from '@/components/bottom_navigation.astro';
+import type { PageMetadata } from '@/types/';
+interface Props {
+  page_metadata: PageMetadata;
+}
+const { page_metadata } = Astro.props;
+---
+
+<BaseLayout page_metadata={page_metadata}>
+  <slot />
+  <footer>
+    <BottomNavigation />
+  </footer>
+</BaseLayout>
