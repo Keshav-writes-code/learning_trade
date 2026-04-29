@@ -14,9 +14,116 @@ const page_metadata: PageMetadata = {
 ---
 
 <AppLayout page_metadata={page_metadata}>
-  <div class="grid place-items-center h-screen">
-    <a class="btn btn-lg" href={`${import.meta.env.BASE_URL}/explore/pyq/`}
-      >PYQs</a
-    >
-  </div>
+  <header
+    class="navbar bg-base-100 sticky top-0 z-50 border-b px-4 border-base-200 w-full max-w-md mx-auto"
+  >
+    <div class="flex-1 gap-3">
+      <span class="text-xl font-bold tracking-tight">Explore</span>
+    </div>
+    <div class="flex-none">
+      <button class="btn btn-ghost btn-circle">
+        <div class="i-tabler:search text-xl"></div>
+      </button>
+    </div>
+  </header>
+
+  <main class="w-full max-w-md mx-auto px-4 py-6 flex flex-col gap-4 pb-24">
+    <!-- Welcome Section -->
+    <div class="mb-2">
+      <h1 class="text-3xl font-bold mb-2">Resource Hub</h1>
+      <p class="text-base-content/70">
+        Discover study materials shared by top-tier peers. High signal, low
+        noise.
+      </p>
+    </div>
+
+    <!-- Bento Grid Layout for Resources -->
+    <div class="grid grid-cols-2 gap-4">
+      <!-- PYQs Card -->
+      <a
+        href="/explore/pyq"
+        class="col-span-2 card group bg-base-200 hover:bg-base-300 transition-colors border border-base-300 min-h-[160px]"
+      >
+        <div class="card-body justify-end">
+          <div
+            class="absolute top-4 right-4 p-2 bg-base-100 rounded-full text-primary"
+          >
+            <div class="i-tabler:history text-xl"></div>
+          </div>
+          <h2
+            class="card-title text-2xl group-hover:text-primary transition-colors"
+          >
+            PYQs
+          </h2>
+          <p class="text-sm text-base-content/70 flex-grow-0">
+            Previous Year Questions. Analyze patterns and ace exams.
+          </p>
+        </div>
+      </a>
+
+      <!-- Lab Files Card -->
+      <a
+        href="#"
+        class="col-span-1 card group bg-base-200 hover:bg-base-300 transition-colors border border-base-300 min-h-[140px]"
+      >
+        <div class="card-body justify-between">
+          <div class="w-fit p-2 bg-base-100 rounded-full text-secondary">
+            <div class="i-tabler:flask text-xl"></div>
+          </div>
+          <div>
+            <h3
+              class="card-title text-lg group-hover:text-secondary transition-colors"
+            >
+              Lab Files
+            </h3>
+            <p class="text-xs uppercase opacity-70 mt-1">
+              Experiments &amp; Code
+            </p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Study Notes Card -->
+      <a
+        href="#"
+        class="col-span-1 card group bg-base-200 hover:bg-base-300 transition-colors border border-base-300 min-h-[140px]"
+      >
+        <div class="card-body justify-between">
+          <div class="w-fit p-2 bg-base-100 rounded-full text-accent">
+            <div class="i-tabler:book text-xl"></div>
+          </div>
+          <div>
+            <h3
+              class="card-title text-lg group-hover:text-accent transition-colors"
+            >
+              Study Notes
+            </h3>
+            <p class="text-xs uppercase opacity-70 mt-1">Curated Summaries</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project Guides Card -->
+      <a
+        href="#"
+        class="col-span-2 card group bg-base-200 hover:bg-base-300 transition-colors border border-base-300 min-h-[120px]"
+      >
+        <div class="card-body flex-row items-center justify-between">
+          <div>
+            <h2
+              class="card-title text-2xl mb-1 group-hover:text-info transition-colors"
+            >
+              Project Guides
+            </h2>
+            <p class="text-sm text-base-content/70">
+              End-to-end documentation for major assignments.
+            </p>
+          </div>
+          <div class="p-3 bg-base-100 rounded-full text-info flex-shrink-0">
+            <div class="i-tabler:sitemap text-2xl"></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
 </AppLayout>
