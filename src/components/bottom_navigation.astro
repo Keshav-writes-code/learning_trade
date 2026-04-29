@@ -5,18 +5,32 @@ const nav_links: {
   icon: string;
   icon_sel:string;
 }[] = [
-    {
-      label: 'explore',
-      href: '/explore',
+            {
+      label: 'feed',
+      href: '/feed',
       icon: 'i-tabler:home',
       icon_sel:"i-tabler:home-filled"
     },
+    {
+      label: 'explore',
+      href: '/explore',
+      icon: 'i-tabler:compass',
+      icon_sel:"i-tabler:compass-filled"
+    },
+            {
+      label: 'upload',
+      href: '/upload',
+      icon: 'i-tabler:circle-plus',
+      icon_sel:"i-tabler:circle-plus-filled"
+    },
+
     {
       label: 'profile',
       href: '/profile',
       icon: 'i-tabler:user',
       icon_sel:"i-tabler:user-filled"
     },
+
   ];
 
 import { base } from 'astro:config/client';
@@ -25,10 +39,10 @@ import { base } from 'astro:config/client';
 <div class="dock" transition:name="bottom_navigation"  >
   {
     nav_links.map((link) => (
-      <a class={Astro.url.pathname.startsWith(`${base}${link.href}`) ? 'dock-active' : ''} href=`${base}${link.href}`>
+      <a class={Astro.url.pathname.startsWith(`${base}${link.href}`) ? 'dock-active color-primary ' : ' color-neutral '} href=`${base}${link.href}`>
 
         { Astro.url.pathname.startsWith(`${base}${link.href}`) ?
-          <div class=`${link.icon_sel} size-5` /> :
+          <div class=`${link.icon_sel}   size-5` /> :
           <div class=`${link.icon} size-5` />
         }
         <span class="dock-label capitalize">{link.label}</span>

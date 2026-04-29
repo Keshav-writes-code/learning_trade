@@ -4,9 +4,8 @@ import { scaleFadeTransition } from './scaleFadeTransition.ts';
 import { base } from 'astro:config/client';
 import type { PageMetadata } from '@/types';
 import 'uno.css';
-import 'daisyui/theme/dark.css';
-import GoogleTagManager from '@/components/google_tag_manager.astro';
 import SeoHead from '@/components/seo_head.astro';
+import '@/styles/theme.css';
 
 type Props = {
   page_metadata: PageMetadata;
@@ -15,7 +14,7 @@ const { page_metadata }: Props = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark" transition:animate={scaleFadeTransition()}>
+<html lang="en" data-theme="custom" transition:animate={scaleFadeTransition()}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,7 +22,6 @@ const { page_metadata }: Props = Astro.props;
 
     <link rel="sitemap" href=`${base}/sitemap-index.xml` />
     <ClientRouter />
-    <GoogleTagManager container_id="G-8WWV5GYEEF" />
   </head>
   <body>
     <slot />

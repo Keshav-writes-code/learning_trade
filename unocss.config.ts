@@ -26,7 +26,7 @@ export default defineConfig({
         cacheDir: 'node_modules/.cache/unocss/fonts',
         fontAssetsDir: 'public/assets/fonts',
         fontServeBaseUrl: '/assets/fonts',
-      }),
+      }) as any,
     }),
   ],
   transformers: [transformerVariantGroup()],
