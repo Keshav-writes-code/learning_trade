@@ -11,6 +11,8 @@ const page_metadata: PageMetadata = {
     image: 'page_fallback_opengraph_image.jpg',
   },
 } as const;
+
+import { base } from 'astro:config/server';
 ---
 
 <AppLayout page_metadata={page_metadata}>
@@ -41,7 +43,7 @@ const page_metadata: PageMetadata = {
     <div class="grid grid-cols-2 gap-4">
       <!-- PYQs Card -->
       <a
-        href="/explore/pyq"
+        href=`${base}/explore/pyq`
         class="col-span-2 card group bg-base-200 hover:bg-base-300 transition-colors border border-base-300 min-h-[160px]"
       >
         <div class="card-body justify-end">
