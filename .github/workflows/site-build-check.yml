@@ -1,9 +1,6 @@
 name: site-build-check
 
 on:
-  push:
-    branches: [staging, dev]
-
   pull_request:
     branches: [staging, dev, main]
 
