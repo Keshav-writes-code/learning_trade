@@ -1,5 +1,5 @@
 ---
-
+import { base } from 'astro:config/server';
 ---
 
 <!-- 3. Hero Section (Enhanced Typography) -->
@@ -46,7 +46,7 @@
     class="reveal-up opacity-0 [animation-delay:300ms] flex flex-col sm:flex-row items-center justify-center gap-6"
   >
     <a
-      href="/explore"
+      href=`${base}/explore`
       class="w-full sm:w-auto px-10 py-4 bg-white text-black rounded-full font-bold transition-all duration-300 flex items-center justify-center gap-3 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] text-lg group"
     >
       Start Exploring <div
