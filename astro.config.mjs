@@ -6,20 +6,8 @@ import db from '@astrojs/db';
 
 import sitemap from '@astrojs/sitemap';
 
-import partytown from '@astrojs/partytown';
-
 export default defineConfig({
-  integrations: [
-    UnoCSS(),
-    svelte(),
-    db(),
-    sitemap(),
-    partytown({
-      config: {
-        forward: ['dataLayer.push'],
-      },
-    }),
-  ],
+  integrations: [UnoCSS(), svelte(), db(), sitemap()],
   env: {
     schema: {
       GOOGLE_DRIVE_API_KEY: envField.string({
@@ -30,5 +18,7 @@ export default defineConfig({
   },
   site: 'https://keshav.is-a.dev',
   base: 'learning_trade',
+  devToolbar: {
+    enabled: false,
+  },
 });
-

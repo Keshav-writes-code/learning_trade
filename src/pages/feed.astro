@@ -1,0 +1,208 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import type { PageMetadata } from '@/types';
+const page_metadata: PageMetadata = {
+  title: 'Free PYQ Papers & Study Materials',
+  description:
+    'Access thousands of free Previous Year Question Papers (PYQ), study notes, and academic resources. Preview PDFs online and download instantly. Your trusted source for college exam preparation materials.',
+  open_graph: {
+    title: 'Learning Trade - Free PYQ Papers & Study Materials',
+    type: 'website',
+    image: 'page_fallback_opengraph_image.jpg',
+  },
+} as const;
+---
+
+<AppLayout page_metadata={page_metadata}>
+  <div
+    class="min-h-screen flex flex-col relative overflow-x-hidden selection:bg-primary selection:text-base-100 pb-[100px]"
+  >
+    <!-- Sticky Top Header -->
+    <header
+      class="sticky top-0 z-40 bg-base-100/95 backdrop-blur-md border-b border-base-300 h-[60px] flex flex-col justify-end px-4"
+    >
+      <div class="flex gap-8 w-full">
+        <button
+          class="relative pb-3 flex-1 flex items-center justify-center font-bold text-sm tracking-wide text-primary"
+        >
+          Trending
+          <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-primary">
+          </div>
+        </button>
+        <button
+          class="relative pb-3 flex-1 flex items-center justify-center font-bold text-sm tracking-wide text-base-content/60 hover:text-base-content transition-colors"
+        >
+          My College
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Feed -->
+    <main class="flex-1 pt-4 px-4 space-y-4">
+      <!-- Resource Card 1 -->
+      <article
+        class="bg-base-200 rounded-lg p-4 border border-base-300 cursor-pointer hover:border-base-content/20 transition-all group"
+      >
+        <!-- Header: Uploader Info -->
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="avatar">
+              <div class="w-6 rounded-full">
+                <img
+                  alt="User avatar"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIR5CCf_5ZkyToBWWwxHFi1RVbnW3E10PW2kCxL_dphT98pAbjkHRf5wjBBFyRMQ0Z5mV8n-rn739pk5wzAShh8T_wZ-xy-hBPXvC1csLI2LBR-I2-nGYkOXAy4us95Ea8lkg9d3u2wkxnfDDVRjdEzRm6Hk1u9KjYxlM1BlRHv_7v_6BP5hxciRqQOKpSDC2O0CUIDLout6y-h1QroyGcb2tkfI57LyiAiFV7fAGGIN9YoIeMBUffbDaRUfbBRNGdoRDsDUQhh2E"
+                />
+              </div>
+            </div>
+            <span class="text-sm font-medium">Alex C.</span>
+            <span class="text-xs text-base-content/60">•</span>
+            <span class="text-xs text-base-content/60">2h ago</span>
+            <!-- Rep Badge -->
+            <div class="flex items-center gap-0.5 ml-1 text-primary">
+              <div class="i-tabler:star-filled text-[14px]"></div>
+              <span class="text-xs font-bold">142</span>
+            </div>
+          </div>
+          <button
+            class="btn btn-ghost btn-xs btn-circle text-base-content/60 hover:text-base-content"
+          >
+            <div class="i-tabler:dots"></div>
+          </button>
+        </div>
+
+        <!-- Content: Title & Tags -->
+        <div class="mb-4">
+          <h2
+            class="font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors"
+          >
+            CS101 Midterm Complete Notes
+          </h2>
+          <p class="text-sm text-base-content/80 mb-3 line-clamp-2">
+            Comprehensive study guide covering data structures, algorithm
+            analysis, and basic graph theory. Includes past year questions from
+            Prof. Smith's exams.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge badge-sm border-base-300">Computer Science</span>
+            <span class="badge badge-sm border-base-300">Notes</span>
+            <span class="badge badge-sm border-base-300">Midterm</span>
+          </div>
+        </div>
+
+        <!-- Footer: Interactions -->
+        <div
+          class="flex items-center justify-between border-t border-base-300 pt-3"
+        >
+          <div class="flex items-center gap-4">
+            <button
+              class="flex items-center gap-1.5 text-base-content/60 hover:text-success transition-colors group/upvote"
+            >
+              <div
+                class="i-tabler:arrow-up text-[20px] group-hover/upvote:scale-110 transition-transform"
+              >
+              </div>
+              <span class="text-sm font-medium">342</span>
+            </button>
+            <button
+              class="flex items-center gap-1.5 text-base-content/60 hover:text-base-content transition-colors"
+            >
+              <div class="i-tabler:message-circle text-[20px]"></div>
+              <span class="text-sm font-medium">28</span>
+            </button>
+          </div>
+          <button
+            class="text-base-content/60 hover:text-base-content transition-colors"
+          >
+            <div class="i-tabler:bookmark text-[20px]"></div>
+          </button>
+        </div>
+      </article>
+
+      <!-- Resource Card 2 (Image/Preview type) -->
+      <article
+        class="bg-base-200 rounded-lg p-4 border border-base-300 cursor-pointer hover:border-base-content/20 transition-all group"
+      >
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="avatar">
+              <div class="w-6 rounded-full">
+                <img
+                  alt="User avatar"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVgZBxaS5Zjm3jtMfbptXG3aUyne8gSZ-AYU6YCXkDzHGIy_YZW8TTE1h8qO5UfRkIIw5qbYyQntgP2VSxpe3rbO2QzE8mmuWMA22HKJ9-NYAry8wJrag3sTg4fQNhvbF8cIlwWheZZJ76BjKBfUSjSYZVz5snF4vAi3xbW4WC6zPb44m3HRo1nKLJqVQpjS4Y91AOFATIGd-SLxps2q9MBaIY4-qyxunc0i9WdW_oligRP6WTGv75pweyxUqgRLWSCg7iT_FAeGM"
+                />
+              </div>
+            </div>
+            <span class="text-sm font-medium">Sam K.</span>
+            <span class="text-xs text-base-content/60">•</span>
+            <span class="text-xs text-base-content/60">5h ago</span>
+            <div class="flex items-center gap-0.5 ml-1 text-primary">
+              <div class="i-tabler:star-filled text-[14px]"></div>
+              <span class="text-xs font-bold">89</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <h2
+            class="font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors"
+          >
+            Physics 204 Lab Manual Solutions
+          </h2>
+          <!-- File Preview Thumbnail -->
+          <div
+            class="relative w-full h-32 bg-base-300 rounded-md mb-3 overflow-hidden group-hover:opacity-90 transition-opacity"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-base-200 to-base-300 opacity-50"
+            >
+            </div>
+            <div
+              class="absolute inset-0 flex items-center justify-center flex-col text-base-content/60"
+            >
+              <div class="i-tabler:file-type-pdf text-3xl mb-1"></div>
+              <span class="text-xs font-bold tracking-wide">PDF DOCUMENT</span>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge badge-sm border-base-300">Physics</span>
+            <span class="badge badge-sm border-base-300">Lab File</span>
+          </div>
+        </div>
+
+        <div
+          class="flex items-center justify-between border-t border-base-300 pt-3"
+        >
+          <div class="flex items-center gap-4">
+            <!-- Example of an active upvote state -->
+            <button
+              class="flex items-center gap-1.5 text-success transition-colors"
+            >
+              <div class="i-tabler:arrow-up text-[20px]"></div>
+              <span class="text-sm font-medium font-bold">124</span>
+            </button>
+            <button
+              class="flex items-center gap-1.5 text-base-content/60 hover:text-base-content transition-colors"
+            >
+              <div class="i-tabler:message-circle text-[20px]"></div>
+              <span class="text-sm font-medium">12</span>
+            </button>
+          </div>
+          <button
+            class="text-base-content/60 hover:text-base-content transition-colors"
+          >
+            <div class="i-tabler:bookmark text-[20px]"></div>
+          </button>
+        </div>
+      </article>
+    </main>
+
+    <!-- Upload FAB -->
+    <div class="fixed bottom-[96px] right-4 z-50">
+      <button
+        class="btn btn-circle btn-primary shadow-lg hover:scale-105 active:scale-95 transition-transform h-14 w-14"
+      >
+        <div class="i-tabler:plus text-[28px] text-primary-content"></div>
+      </button>
+    </div>
+  </div>
+</AppLayout>

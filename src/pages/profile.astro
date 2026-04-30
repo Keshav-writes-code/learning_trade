@@ -1,12 +1,12 @@
 ---
 import AppLayout from '@/layouts/AppLayout.astro';
 import type { PageMetadata } from '@/types';
+
 const page_metadata: PageMetadata = {
-  title: 'Free PYQ Papers & Study Materials',
-  description:
-    'Access thousands of free Previous Year Question Papers (PYQ), study notes, and academic resources. Preview PDFs online and download instantly. Your trusted source for college exam preparation materials.',
+  title: 'Profile | Learning Trade',
+  description: 'Student profile, uploads, and saved resources.',
   open_graph: {
-    title: 'Learning Trade - Free PYQ Papers & Study Materials',
+    title: 'Learning Trade - Profile',
     type: 'website',
     image: 'page_fallback_opengraph_image.jpg',
   },
@@ -14,7 +14,112 @@ const page_metadata: PageMetadata = {
 ---
 
 <AppLayout page_metadata={page_metadata}>
-  <div class="grid place-items-center h-screen">
-    <a class="btn btn-lg" href={`${import.meta.env.BASE_URL}/pyq/`}>PYQs</a>
+  <div class="flex flex-col overflow-x-hidden bg-base-100 min-h-screen">
+    <!-- Header -->
+    <header class="navbar bg-base-100/90 backdrop-blur-md sticky top-0 z-50 border-b border-base-300 px-4 py-2">
+      <div class="navbar-start">
+        <button class="btn btn-ghost btn-circle">
+          <div class="i-tabler:arrow-left size-6"></div>
+        </button>
+      </div>
+      <div class="navbar-center">
+        <h1 class="text-lg font-bold tracking-tight">Profile</h1>
+      </div>
+      <div class="navbar-end"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 pb-24">
+      <!-- Hero Section -->
+      <section class="flex flex-col items-center px-4 pt-8 pb-6 border-b border-base-300">
+        <div class="avatar mb-4">
+          <div class="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <img alt="Profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABPbMMHqYuLwBOLIpkp8GuAVq-YKTs63Ho5_cyH60_arQxnWb5tlw-nUYhJLJLiXdMG3kSzL5Q2-m6buwRim1GBYlFCd_lU46yhxCNzdtlI18QPLDqaIGnAALA4hnsUUlWDJoU6va8yJ-5IE75ntA8hX00DyNaONXb5f5FK-Cx8tqlKm0LJOyT_K5L4CAM_UOOwxhAKn2-5tFHNBsA08b4EhRS6BrydbBZE-9-aC_DAoo8vHFxONiv0T7sr-IPE3AEbaDC1YG6Ofk" />
+          </div>
+        </div>
+        
+        <h2 class="font-bold text-2xl mb-1">Alex Mercer</h2>
+        <p class="text-sm opacity-70 mb-4 font-medium">Computer Science, Year 3</p>
+        
+        <div class="flex flex-col items-center mb-6">
+          <div class="flex items-baseline gap-1 text-primary">
+            <div class="i-tabler:star-filled size-7 translate-y-1"></div>
+            <span class="font-bold text-3xl leading-none">1,452</span>
+          </div>
+          <span class="text-xs opacity-60 uppercase tracking-wider font-bold mt-1">Total Rep</span>
+        </div>
+        
+        <button class="btn btn-outline btn-sm rounded-full">
+          Edit Profile
+        </button>
+      </section>
+
+      <!-- Stats Row -->
+      <section class="stats stats-horizontal w-full rounded-none border-b border-base-300 bg-base-100">
+        <div class="stat place-items-center py-4">
+          <div class="stat-value text-xl">34</div>
+          <div class="stat-title text-xs mt-1">Uploads</div>
+        </div>
+        <div class="stat place-items-center py-4 border-l border-base-300">
+          <div class="stat-value text-xl">892</div>
+          <div class="stat-title text-xs mt-1">Upvotes</div>
+        </div>
+        <div class="stat place-items-center py-4 border-l border-base-300">
+          <div class="stat-value text-xl">128</div>
+          <div class="stat-title text-xs mt-1">Comments</div>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <div role="tablist" class="tabs tabs-bordered w-full sticky top-[64px] z-40 bg-base-100/95 backdrop-blur-sm border-b border-base-300 pt-2">
+        <a role="tab" class="tab tab-active h-12 text-primary border-primary font-bold">Uploads</a>
+        <a role="tab" class="tab h-12 opacity-60 hover:opacity-100">Saved</a>
+      </div>
+
+      <!-- Content List -->
+      <div class="px-4 py-4 space-y-3">
+        <!-- Compact Card 1 -->
+        <a class="card card-compact card-bordered bg-base-200/50 hover:bg-base-200 transition-colors h-[72px] justify-center" href="#">
+          <div class="card-body flex-row items-center justify-between py-0">
+            <div class="flex flex-col justify-center flex-1 min-w-0 pr-4">
+              <h3 class="font-bold text-base truncate">CS201 Data Structures PYQ 2022</h3>
+              <p class="text-xs opacity-60 mt-0.5 truncate">Oct 12, 2023 • PDF</p>
+            </div>
+            <div class="badge badge-success badge-outline gap-1 shrink-0 p-3 bg-success/10 border-none text-success">
+              <div class="i-tabler:arrow-up size-4"></div>
+              <span class="font-bold text-sm">342</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Compact Card 2 -->
+        <a class="card card-compact card-bordered bg-base-200/50 hover:bg-base-200 transition-colors h-[72px] justify-center" href="#">
+          <div class="card-body flex-row items-center justify-between py-0">
+            <div class="flex flex-col justify-center flex-1 min-w-0 pr-4">
+              <h3 class="font-bold text-base truncate">Operating Systems Midterm Notes</h3>
+              <p class="text-xs opacity-60 mt-0.5 truncate">Sep 28, 2023 • Markdown</p>
+            </div>
+            <div class="badge badge-success badge-outline gap-1 shrink-0 p-3 bg-success/10 border-none text-success">
+              <div class="i-tabler:arrow-up size-4"></div>
+              <span class="font-bold text-sm">185</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Compact Card 3 -->
+        <a class="card card-compact card-bordered bg-base-200/50 hover:bg-base-200 transition-colors h-[72px] justify-center" href="#">
+          <div class="card-body flex-row items-center justify-between py-0">
+            <div class="flex flex-col justify-center flex-1 min-w-0 pr-4">
+              <h3 class="font-bold text-base truncate">Calculus III Final Cheat Sheet</h3>
+              <p class="text-xs opacity-60 mt-0.5 truncate">May 15, 2023 • Image</p>
+            </div>
+            <div class="badge badge-success badge-outline gap-1 shrink-0 p-3 bg-success/10 border-none text-success">
+              <div class="i-tabler:arrow-up size-4"></div>
+              <span class="font-bold text-sm">92</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </main>
   </div>
 </AppLayout>
