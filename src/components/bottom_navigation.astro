@@ -39,7 +39,7 @@ import { base } from 'astro:config/client';
 <div class="dock" transition:name="bottom_navigation"  >
   {
     nav_links.map((link) => (
-      <a class={Astro.url.pathname.startsWith(`${base}${link.href}`) ? 'dock-active color-primary ' : ' color-neutral '} href=`${base}${link.href}`>
+      <a class={Astro.url.pathname.startsWith(`${base}${link.href}`) ? 'dock-active color-[var(--color-primary)] ' : ' color-neutral '} href=`${base}${link.href}`>
 
         { Astro.url.pathname.startsWith(`${base}${link.href}`) ?
           <div class=`${link.icon_sel}   size-5` /> :
