@@ -4,7 +4,6 @@ import { transformerVariantGroup } from 'unocss';
 import { presetIcons } from 'unocss';
 import { presetMini } from 'unocss';
 import { presetDaisyui } from '@0x-jerry/unocss-preset-daisyui';
-import theme from 'daisyui/functions/variables.js';
 import { presetWebFonts } from 'unocss';
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local';
 export default defineConfig({
@@ -32,8 +31,4 @@ export default defineConfig({
   ],
   transformers: [transformerVariantGroup()],
   separators: [':'],
-  theme: {
-    ...theme,
-    // colors: colors as Record<string, string>
-  },
 });
